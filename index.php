@@ -38,9 +38,12 @@
 <html>
 
 <head>
-    <title>Home page</title>
+  <script src="js/myscripts.js"></script>
     <link rel="stylesheet" href="css/style.css" type="text/css">
-    <script src="js/myscripts.js"></script>
+
+    <title>Home page</title>
+
+
 
 </head>
 
@@ -56,7 +59,7 @@
       <div >
             <ul id="navList">
             <li> <a href="index.php">HOME</a></li>
-            <li><a href="menu.html">MENU</a></li>
+            <li><a href="#" onclick="myFunction();">MENU</a></li>
             <li>  <a href="myorder.html">MY ORDER</a></li>
              <form id="searchBar" >
           Search for product:
@@ -72,7 +75,9 @@
         <div id="sidebar"
           <ul class="sideList">
             <li> CATAGORIES<br></li>
-            <a href="index.php?option=starters" onclick="return one();"><li>Starters</li></a>
+
+
+            <a href="index.php?option=starters"><li  onclick="myFunction()">Starters</li></a>
               <a href="index.php?option=seafood"><li>Seafood &nbsp  &nbsp  &nbsp   &nbsp  </li></a>
               <a href="index.php?option=soups"><li>Soups</li></a>
               <a href="index.php?option=specials"><li>Special Value Meals</li></a>
@@ -217,9 +222,10 @@
         <footer id="footer">
 
           <div id="footerText">
-
+    <b>&copy 2017 Eat In Chinese Restraunt | by Eric Strong</b>
           </div>
-      &copy 2017 Eat In Chinese Restraunt | by Eric Strong
+
+
 
       <div id="socialMediaIcons">
         <a href="#"><img src="images/facebook-opt.png" alt="facebook logo" width="30px"></a>
