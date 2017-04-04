@@ -30,7 +30,8 @@
 
 
   //get results
-  //$result1 = $mysqli->query($landingQuery) or die($mysqli->error.__LINE__);
+  $result1 = $mysqli->query($landingQuery);
+$_GET['id']=1;
 
  ?>
 
@@ -49,18 +50,22 @@
 
 <body>
     <!--Text or images to display in Browser window go after this opening body tag.-->
+
+    <div id="colorSIDE">
+
+
     <div id="container">
 
       <div id="mainBanner">
-        <div id="banner">Eat In Restaraunt</div>
+        <div id="banner">Eat In Restaurant</div>
           <div id="bannerLogo"> EIR</div>
 
           </div>
-      <div >
+      <div>
             <ul id="navList">
             <li> <a href="index.php">HOME</a></li>
             <li><a href="#" onclick="myFunction();">MENU</a></li>
-            <li>  <a href="myorder.html">MY ORDER</a></li>
+            <li>  <a href="myorder.php">MY ORDER</a></li>
              <form id="searchBar" >
           Search for product:
           <input type="search" name="option">
@@ -74,10 +79,11 @@
 
         <div id="sidebar"
           <ul class="sideList">
-            <li> CATAGORIES<br></li>
+            <li><u>CATAGORIES</u><br></li>
 
 
-            <a href="index.php?option=starters"><li  onclick="myFunction()">Starters</li></a>
+
+            <a href="index.php?option=starters"><li>Starters</li></a>
               <a href="index.php?option=seafood"><li>Seafood &nbsp  &nbsp  &nbsp   &nbsp  </li></a>
               <a href="index.php?option=soups"><li>Soups</li></a>
               <a href="index.php?option=specials"><li>Special Value Meals</li></a>
@@ -94,22 +100,23 @@
         <!--sidebar ends-->
         <div id="maincontent">
 
+          <div id="myorder">
+            <b>Your Shopping Cart Total: €0.00</b>
+
+          </div>
+
           <article id="mainArticle">
               <section id="section1">
                 <!--This is where all of the php wil go for the body of the website-->
 
-              <table id="mainTable" border="1px">
-                <tr>
-                    <th>Product</th>
-                    <th>Price</th>
 
-                    <th>add to cart</th>
-                </tr>
+                  <div id="product_div">
 
 
                 <?php
 
-                $option=$_GET['option'];
+
+              $option=$_GET['option'];
 
                 switch($option){
 
@@ -165,7 +172,7 @@
                   case "minerals":{
 
                     $item = "Minerals";
-                      $result1 = $mysqli->query($mineralsQuery) or die($mysqli->error.__LINE__);
+                      $result1 = $mysqli->query($mineralsQuery);
                   }break;
 
                   case "option":{
@@ -191,28 +198,42 @@
                       $list = '<h1>' . $item . '</h1>';
 
                       echo $list;
-                      while($row = $result1->fetch_assoc()){
 
-                        //display details in the database
 
-                        $output = '<tr id="mainRows">';
-                        $output .= '<td>' . $row['name'] . '</td>';
-                        $output .= '<td> €' . $row['price'] . '</td>';
-                        $output .= '<td> <a href=""><button type="button" name="addtocart">Add to cart</button></a></td>';
-                        $output .= '</tr>';
-                        echo $output;
 
-                      }//end while loop
                   }else{
                     echo "No Specials today";
                   }
 
+                    //$result1 = $mysqli->query($landingQuery);
+                    //while($row = mysqli_fetch_array($result1))
+                      while($row = $result1->fetch_assoc()){
+                        $product_id = $row['id'];
+                        $product_name = $row['name'];
+                        $product_price = $row['price'];
+                        $product_catagory = $row['catagory'];
+                        $product_image = $row['image'];
 
+                        //this is the product boxes to be displayed
+                        echo "
+
+                        <div id='product_box'>
+
+                          <h5>$product_name</h5>
+                          <img src='$product_image' width='100' height='100' border='3' alt='food image'/>
+                          <p><i>€ $product_price</i></p>
+                          <a href='index.php?product_id=$product_id'><input type='submit' value='add to order' name='item'></a>
+
+                        </div> ";
+
+
+                    }//end while loop
                  ?>
+                   </div>
 
 
 
-              </table>
+
 
               </section>
 
@@ -222,7 +243,7 @@
         <footer id="footer">
 
           <div id="footerText">
-    <b>&copy 2017 Eat In Chinese Restraunt | by Eric Strong</b>
+            <b>&copy 2017 Eat In Chinese Restaurant | by Eric Strong</b>
           </div>
 
 
@@ -238,6 +259,7 @@
         <!--footer ends-->
     </div>
     <!--container ends-->
+    </div>
 
 </body>
 

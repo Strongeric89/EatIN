@@ -97,7 +97,7 @@ if(isset($_POST['insertProduct'])){
 
 
 
-    $insert = "INSERT INTO products (id,name,price,catagory,image) VALUES('$pos','$product_name', '$product_price', '$id', '$product_image')";
+    $insert = "INSERT INTO products (id,name,price,catagory,image) VALUES('$pos','$product_name', '$product_price', '$product_catagory', '$product_image')";
 
 
 

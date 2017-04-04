@@ -1,0 +1,115 @@
+ <table id="mainTable" border="1px">
+  <tr>
+      <th>Product</th>
+      <th>Price</th>
+
+      <th>add to cart</th>
+  </tr>
+
+
+  <?php
+
+  $option=$_GET['option'];
+
+  switch($option){
+
+    case "starters":{
+      $item = "Starters";
+        $result1 = $mysqli->query($startersQuery) or die($mysqli->error.__LINE__);
+    }break;
+
+    case "seafood":{
+      $item = "Seafood";
+        $result1 = $mysqli->query($seafoodQuery) or die($mysqli->error.__LINE__);
+    }break;
+
+    case "soups":{
+      $item = "Soups";
+        $result1 = $mysqli->query($soupQuery) or die($mysqli->error.__LINE__);
+    }break;
+
+    case "specials":{
+      $item = "Specials";
+        $result1 = $mysqli->query($landingQuery) or die($mysqli->error.__LINE__);
+    }break;
+
+    case "kids":{
+      $item = "Kids Meals";
+        $result1 = $mysqli->query($kidsQuery) or die($mysqli->error.__LINE__);
+    }break;
+
+    case "house":{
+
+      $item = "House recommendations";
+        $result1 = $mysqli->query($houseRecQuery) or die($mysqli->error.__LINE__);
+    }break;
+
+    case "curry":{
+
+      $item = "Curry Dishes";
+        $result1 = $mysqli->query($curryQuery) or die($mysqli->error.__LINE__);
+    }break;
+
+    case "chow":{
+
+      $item = "Chow mein Dishes";
+        $result1 = $mysqli->query($chowQuery) or die($mysqli->error.__LINE__);
+    }break;
+
+    case "extra":{
+
+      $item = "Extra Portions";
+        $result1 = $mysqli->query($extraQuery) or die($mysqli->error.__LINE__);
+    }break;
+
+    case "minerals":{
+
+      $item = "Minerals";
+        $result1 = $mysqli->query($mineralsQuery) or die($mysqli->error.__LINE__);
+    }break;
+
+    case "option":{
+
+      $item = $option;
+        $result1 = $mysqli->query($searchQuery);
+    }break;
+
+    default:{
+
+      $item = " ";
+      echo "no items matching";
+
+
+    }
+
+
+  }//end switchcase
+
+    //check if rows exist
+    if($result1->num_rows > 0){
+        //loop over the specials
+        $list = '<h1>' . $item . '</h1>';
+
+        echo $list;
+        while($row = $result1->fetch_assoc()){
+
+          //display details in the database
+
+          $output = '<tr id="mainRows">';
+          $output .= '<td>' . $row['name'] . '</td>';
+          $output .= '<td> €' . $row['price'] . '</td>';
+          $output .= '<td> <a href=""><button type="button" name="addtocart">Add to cart</button></a></td>';
+          $output .= '</tr>';
+          echo $output;
+
+        }//end while loop
+    }else{
+      echo "No Specials today";
+    }
+
+
+   ?>
+
+
+
+</table>
