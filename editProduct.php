@@ -29,13 +29,12 @@
 
   ?>
 
-
   <?php
 
-    if($_POST){
+    // if($_POST){
+      if(isset($_POST['editdone'])){
         //get id
-        $id= $_GET['id'];
-
+        // $id= $_GET['id'];
         $pid = $_POST['productId'];
         $pname = $_POST['productName'];
         $pprice = $_POST['productPrice'];
@@ -43,22 +42,20 @@
         $pimage = $_POST['productImage'];
 
         //create the update query
-        $update = "UPDATE `products` SET name = $pname, price = $pprice, catagory = $pcatagory, image = $pimage WHERE products.id = '$pid'
-        ";
 
-        echo $update;
+      // $update = "UPDATE `products` SET name = $pname, price = $pprice, image = $pimage WHERE id = $pid ";
+
+      $update = "UPDATE `products` SET `name` = '$pname' WHERE `products`.`id` = $pid";
+
 
         //do the query
         $result2 = $mysqli->query($update);
+        echo "<script>alert('item updated!')</script>";
 
-        $outputmsg = "Product Update";
-        header('Location: editRemoveProductResults.php?msg='.urlencode($outputmsg).'');
+         $outputmsg = "Product Update";
+        header('Location: editRemoveProductResults.php');
 
-        if($result2){
-          echo "<script>alert('item updated!')</script>";
-          //refresh the page
-          echo "<script>window.open('editRemoveProductResults.php','_self')</script>";
-        }//end check
+
 
 
     }//end if
@@ -154,7 +151,7 @@
 
               <tr align="center">
 
-                    <td colspan="8" ><input type="submit" value="Update Item" ></td>
+                    <td colspan="8" ><input type="submit" value="Update Item" name="editdone" onclick=" itemUpdated();"></td>
 
               </tr>
 
