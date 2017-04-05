@@ -99,14 +99,12 @@ if(isset($_POST['insertProduct'])){
 
     $insert = "INSERT INTO products (id,name,price,catagory,image) VALUES('$pos','$product_name', '$product_price', '$product_catagory', '$product_image')";
 
-
-
       $result2 = $mysqli->query($insert);
 
       if($result2){
         echo "<script>alert('item added')</script>";
         //refresh the page
-        echo "<script>window.open('insertProduct.php','_self')</script>";
+        echo "<script>window.open('editRemoveProductResults.php','_self')</script>";
       }//end check
 
 

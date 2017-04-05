@@ -1,9 +1,23 @@
-<?php include('includes/db.php'); ?>
+<?php include('includes/db.php');
+
+//sets up the option get variable as its not set on run
+if(!isset($_GET['option'])){
+
+   header('Location: index.php?option=TodaysSpecials');
+   exit;
+ }
+
+?>
 
 <?php
+
+
+
   //create the select for main page
+
   $option = "";
   $item = "";
+
 
   $startersQuery = "SELECT * FROM PRODUCTS WHERE CATAGORY = '1' ";
 
@@ -25,13 +39,13 @@
 
   $mineralsQuery = "SELECT * FROM PRODUCTS WHERE CATAGORY = '10' ";
 
-  $searchQuery = "SELECT * FROM PRODUCTS WHERE NAME LIKE '%$option%' ";
-
-
-
   //get results
-  $result1 = $mysqli->query($landingQuery);
-$_GET['id']=1;
+//   $result1 = $mysqli->query($landingQuery);
+// $_GET['id']=1;
+
+
+
+
 
  ?>
 
@@ -46,9 +60,12 @@ $_GET['id']=1;
 
 
 
+
 </head>
 
 <body>
+
+
     <!--Text or images to display in Browser window go after this opening body tag.-->
 
     <div id="colorSIDE">
@@ -63,14 +80,21 @@ $_GET['id']=1;
           </div>
       <div>
             <ul id="navList">
-            <li> <a href="index.php">HOME</a></li>
-            <li><a href="#" onclick="myFunction();">MENU</a></li>
+            <li> <a href="index.php?option=TodaysSpecials">HOME</a></li>
+
             <li>  <a href="myorder.php">MY ORDER</a></li>
-             <form id="searchBar" >
+
+              <!-- onclick="myFunction();" -->
+            <li><a href="aboutUs.html" >ABOUT US</a></li>
+             <form id="searchBar">
           Search for product:
           <input type="search" name="option">
 
+
           </form>
+
+
+
             </ul>
 
           </div>
@@ -113,8 +137,9 @@ $_GET['id']=1;
                   <div id="product_div">
 
 
-                <?php
 
+
+                <?php
 
               $option=$_GET['option'];
 
@@ -137,6 +162,11 @@ $_GET['id']=1;
 
                   case "specials":{
                     $item = "Specials";
+                      $result1 = $mysqli->query($landingQuery) or die($mysqli->error.__LINE__);
+                  }break;
+
+                  case "TodaysSpecials":{
+                    $item = "Today's Specials";
                       $result1 = $mysqli->query($landingQuery) or die($mysqli->error.__LINE__);
                   }break;
 
@@ -175,19 +205,16 @@ $_GET['id']=1;
                       $result1 = $mysqli->query($mineralsQuery);
                   }break;
 
-                  case "option":{
-
-                    $item = $option;
-                      $result1 = $mysqli->query($searchQuery);
-                  }break;
 
                   default:{
 
-                    $item = " ";
-                    echo "no items matching";
+                     $item = $option;
+                       $searchQuery = "SELECT * FROM PRODUCTS WHERE NAME LIKE '%$option%' ";
+                    $result1 = $mysqli->query($searchQuery);
 
 
-                  }
+
+                  }break;
 
 
                 }//end switchcase
@@ -252,6 +279,7 @@ $_GET['id']=1;
         <a href="#"><img src="images/facebook-opt.png" alt="facebook logo" width="30px"></a>
         <a href="#"><img src="images/twitter-opt.png" alt="twitterlogo" width="30px"></a>
         <a href="#"><img src="images/linked-in-opt.png" alt="linkedin logo" width="30px"></a>
+          <a href="#"><img src="images/justeat-opt.png" alt="just eatlogo" width="30px"></a>
 
       </div>
 
