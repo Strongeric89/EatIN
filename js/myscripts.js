@@ -12,8 +12,13 @@ function myFunction(){
 function notDeleted(){
 
   alert("item was not deleted");
+
 }
 
 function itemDeleted(){
   alert("item was deleted");
+}
+
+function itemUpdated(){
+  alert("item has been updated");
 }

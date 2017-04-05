@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <title>admin - Remove product page</title>
 
-
   </head>
   <body >
 
@@ -40,43 +39,44 @@ while($row = $result1->fetch_assoc()){
 
   <div id='product_box2'>
 
-    <h5>$product_name</h5>
+    <h5>$product_id</h5>
+    <h2>$product_name</h2>
     <img src='$product_image' width='100' height='100' border='3' alt='food image'/>
-    <p><i>€ $product_price</i></p>
+    <p><b>€ $product_price</b></p>
 
 
-<form action='editRemoveProductResults.php' method='post'>
+<form action='removeProduct.php?id=$product_id' method='post'>
     <a href='#'><input id='box' type='submit' value='yes' name='yesRemove' onclick='itemDeleted();' ></a>
 
-
     <a href='editRemoveProductResults.php'><input id='box' type='submit' value='no' name='noRemove' onclick='notDeleted();'></a>
+
   </form>
 
   </div> ";
 
+  if(isset($_POST['yesRemove'])){
+
+      $delete2 = "DELETE FROM `products` WHERE name like '%$product_name%'";
+
+     $mysqli->query($delete2);
+
+     header('Location: editRemoveProductResults.php');
+     exit;
+
+
+  }//end if
 
 }//end while loop
 
  ?>
 
-
  <?php
- //inserting data into the database
- if(isset($_POST['yesRemove'])){
-
-
-     $delete2 = "DELETE FROM 'products' WHERE id = $id";
-
-    $mysqli->query($delete2);
-
-
- }//end if
+    if(isset($_POST['noRemove'])){
+          header('Location: editRemoveProductResults.php');
+    }
 
 
   ?>
-
-
-
 
             </div>
           </div>

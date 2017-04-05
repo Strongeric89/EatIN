@@ -67,8 +67,28 @@
 
               <tr>
                     <td><b>Product Image</b></td>
-                    <td><input type="text" name="image" placeholder="images/noodles.jpg"></td>
+                    <td>
+                    <select name="image">
+                      <option value="<?php  echo $image; ?>">
+                        <?php
+                            //display all catagories
+                            $images = "SELECT DISTINCT image FROM `products` ";
+                            $result = $mysqli->query($images);
 
+                            while($row = mysqli_fetch_array($result)){
+
+                              $name = $row['image'];
+
+                              echo "<option>$name</option>";
+
+                            }//end query results
+
+                          ?>
+                      </option>
+
+
+                      </select>
+                        </td>
               </tr>
 
               <tr align="center">

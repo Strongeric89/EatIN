@@ -34,25 +34,28 @@
     // if($_POST){
       if(isset($_POST['editdone'])){
         //get id
-        // $id= $_GET['id'];
+
         $pid = $_POST['productId'];
         $pname = $_POST['productName'];
         $pprice = $_POST['productPrice'];
         $pcatagory = $_POST['productCatagory'];
         $pimage = $_POST['productImage'];
 
-        //create the update query
-
-      // $update = "UPDATE `products` SET name = $pname, price = $pprice, image = $pimage WHERE id = $pid ";
+      //create the update queries
 
       $update = "UPDATE `products` SET `name` = '$pname' WHERE `products`.`id` = $pid";
-
+      $update2 = "UPDATE `products` SET `image` = '$pimage' WHERE `products`.`id` = $pid";
+      $update3 = "UPDATE `products` SET `price` = '$pprice' WHERE `products`.`id` = $pid";
+      $update4 = "UPDATE `products` SET `catagory` = '$pcatagory' WHERE `products`.`id` = $pid";
 
         //do the query
         $result2 = $mysqli->query($update);
-        echo "<script>alert('item updated!')</script>";
+        $mysqli->query($update2);
+        $mysqli->query($update3);
+        $mysqli->query($update4);
 
-         $outputmsg = "Product Update";
+
+         //$outputmsg = "Product Update";
         header('Location: editRemoveProductResults.php');
 
 
@@ -144,8 +147,31 @@
 
               <tr>
                     <td><b>Product Image</b></td>
-                    <td><input type="text" name="productImage" value="<?php
-                      echo $image; ?>"></td>
+
+
+                      <td>
+                      <select name="productImage">
+                        <option value="<?php  echo $image; ?>">
+                          <?php
+                              //display all catagories
+                              $images = "SELECT DISTINCT image FROM `products` ";
+                              $result = $mysqli->query($images);
+
+                              while($row = mysqli_fetch_array($result)){
+
+                                $name = $row['image'];
+
+                                echo "<option>$name</option>";
+
+                              }//end query results
+
+                            ?>
+                        </option>
+
+
+                        </select>
+                          </td>
+
 
               </tr>
 
