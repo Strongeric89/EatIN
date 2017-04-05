@@ -322,10 +322,29 @@ width: 30%;
   /*background-image: url(../images/bg-striped.jpg);*/
 
 }
+#directions{
+  width:100%;
+  height:300px;
+}
 
-#map{
-  text-align: left;
+#map1{
+
   margin-bottom: 30px;
+  float:left;
+
+
+}
+
+#map2{
+
+  margin-top: 50px;
+  margin-bottom: 30px;
+  margin-right:250px;
+  text-align: left;
+  float:right;
+
+
+
 }
 
 #contact-form{

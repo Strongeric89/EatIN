@@ -14,8 +14,8 @@
     <div id="container">
 
         <div id="mainBanner">
-            <div id="banner">Eat In Restaurant</div>
-            <div id="bannerLogo"> EIR</div>
+          <div id="banner"><a id="logoLink2" href="index.php">Eat In Restaurant</a></div>
+            <div id="bannerLogo"> <a id="logoLink" href="index.php">EIR</a></div>
 
         </div>
         <div>
