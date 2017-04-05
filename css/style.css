@@ -31,7 +31,8 @@ p {
 
 #colorSIDE{
 
-  background-color: #cccccc;
+  /*background-color: #cccccc;*/
+  background-color: #333;
   height: 900px;
   width: 960px;
 
@@ -56,7 +57,11 @@ p {
   font-family: ar delaney;
   text-align: center;
   font-size: 40px;
+
 }
+
+
+
 
 #bannerLogo{
   padding: 40px 0px 0px;
@@ -68,18 +73,33 @@ p {
   background-color: white;
   float: left;
   width:18%;
+
+
 }
 
 #sidebar {
 
-
+  font-size: 22px;
   padding: 5px;
-  background-color: #cccccc;
+
+
+  /*background-color: #cccccc;*/
+  background-color: #333;
   width: 160px;
   float: left;
   /*height: 900px;*/
 
 
+}
+
+#logoLink{
+  text-decoration: none;
+  color:black;
+}
+
+#logoLink2{
+  text-decoration: none;
+  color:white;
 }
 
 
@@ -91,11 +111,6 @@ p {
 
   /*height: 605px;*/
   background-image: url(../images/bg-striped.jpg);
-
-
-
-
-
 
 }
 #footer {
@@ -123,6 +138,16 @@ p {
 a:hover {
   color: red;
 
+}
+
+a:link {
+color: #CC0000;
+}
+a:visited {
+color: white;
+}
+a:hover {
+color: #FF3300;
 }
 
 
@@ -232,6 +257,7 @@ width: 30%;
     height: 50px;
 width: 30%;
 
+
 }
 
 
@@ -243,6 +269,7 @@ width: 30%;
       width: 100%;
   text-align: left;
    border-bottom: 1px solid #ddd;
+
 
 
 
@@ -273,13 +300,15 @@ width: 30%;
 
 
 #myorder{
-  width:790px;
+  width:760px;
   height: 100px;
   background-image: url(../images/bg-box.jpg);
   color:black;
-  padding: 0;
-  margin:0;
-  text-align: center;
+  padding: 0px;
+  padding-left: 20px;
+  margin:0px;
+  text-align: left;
+
 }
 
 /*Style for about us page*/
@@ -335,8 +364,9 @@ width: 30%;
 /*The remove productpage*/
 
 #deleteBox{
-  background-color: white;
+
   text-align: center;
+    background-image: url(../images/bg-striped.jpg);
 
 }
 
@@ -347,4 +377,42 @@ width: 30%;
   font-size: 20px;
   background-color: green;
   font-family: fantasy;
+}
+
+
+
+#addProduct{
+  text-decoration: none;
+  color:black;
+}
+
+#addProduct:hover {
+  color: white;
+}
+
+#button1:hover{
+    color:black
+
+
+  }
+
+#button1{
+  text-decoration: none;
+
+}
+
+#importantText{
+  color:red;
+}
+
+#tableImage{
+
+    background-image: url(../images/bg-striped.jpg);
+}
+#tableImage a:visited{
+  color:black;
+}
+
+#tableImage a:link{
+  color: #cc0000;
 }

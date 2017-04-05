@@ -17,7 +17,7 @@
 
           <form action="insertProduct.php" method="post">
 
-            <table align="center" width="900" border="2" bgcolor="white">
+            <table id="tableImage" align="center" width="900" border="2" bgcolor="white">
 
 
               <tr align="center" height="200">

@@ -42,7 +42,6 @@
         $pimage = $_POST['productImage'];
 
       //create the update queries
-
       $update = "UPDATE `products` SET `name` = '$pname' WHERE `products`.`id` = $pid";
       $update2 = "UPDATE `products` SET `image` = '$pimage' WHERE `products`.`id` = $pid";
       $update3 = "UPDATE `products` SET `price` = '$pprice' WHERE `products`.`id` = $pid";
@@ -83,7 +82,7 @@
 
           <form action="editProduct.php?id=<?php echo $id; ?>" method="post">
 
-            <table align="center" width="900" border="2" bgcolor="white">
+            <table  id="tableImage" align="center" width="900" border="2" bgcolor="white">
 
 
               <tr align="center" height="200">

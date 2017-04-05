@@ -16,7 +16,7 @@
     <div id="deleteBox">
 
 
-    <div id="container2">
+    <div id="container2" >
 <h1> Are you sure you want to remove this product?</h1>
 <?php
 
@@ -39,10 +39,10 @@ while($row = $result1->fetch_assoc()){
 
   <div id='product_box2'>
 
-    <h5>$product_id</h5>
+    <h2>ID : $product_id</h2>
     <h2>$product_name</h2>
-    <img src='$product_image' width='100' height='100' border='3' alt='food image'/>
-    <p><b>€ $product_price</b></p>
+    <img src='$product_image' width='120' height='120' border='3' alt='food image'/>
+    <h2><b>€ $product_price</b></h2>
 
 
 <form action='removeProduct.php?id=$product_id' method='post'>

@@ -74,8 +74,8 @@ if(!isset($_GET['option'])){
     <div id="container">
 
       <div id="mainBanner">
-        <div id="banner">Eat In Restaurant</div>
-          <div id="bannerLogo"> EIR</div>
+        <div id="banner"><a id="logoLink2" href="index.php">Eat In Restaurant</a></div>
+          <div id="bannerLogo"> <a id="logoLink" href="index.php">EIR</a></div>
 
           </div>
       <div>
@@ -86,6 +86,9 @@ if(!isset($_GET['option'])){
 
               <!-- onclick="myFunction();" -->
             <li><a href="aboutUs.html" >ABOUT US</a></li>
+
+
+            <li>  <a href="editRemoveProductResults.php">ADMIN</a></li>
              <form id="searchBar">
           Search for product:
           <input type="search" name="option">
@@ -106,13 +109,12 @@ if(!isset($_GET['option'])){
             <li><u>CATAGORIES</u><br></li>
 
 
-
             <a href="index.php?option=starters"><li>Starters</li></a>
               <a href="index.php?option=seafood"><li>Seafood &nbsp  &nbsp  &nbsp   &nbsp  </li></a>
               <a href="index.php?option=soups"><li>Soups</li></a>
               <a href="index.php?option=specials"><li>Special Value Meals</li></a>
               <a href="index.php?option=kids"><li>Kid's Meals</li></a>
-              <a href=index.php?option=house><li>House Recommendations</li></a>
+              <a href=index.php?option=house><li>House Recommended</li></a>
               <a href="index.php?option=curry"><li>Curry Dishes</li></a>
             <a href="index.php?option=chow">  <li>Chow Mein Dishes</li></a>
             <a href="index.php?option=extra">  <li>Extra Portions</li></a>
@@ -125,7 +127,16 @@ if(!isset($_GET['option'])){
         <div id="maincontent">
 
           <div id="myorder">
-            <b>Your Shopping Cart Total: €0.00</b>
+<br>
+            <b>
+            <script>
+              document.write(displayDate());
+            </script>
+          </b>
+          <br>
+
+
+            <h1>Your Shopping Cart Total: <span id="importantText">€0.00</span></h1>
 
           </div>
 

@@ -14,10 +14,12 @@
 
           <form action="editProduct.php" method="post">
 
-            <table align="center" width="900" border="2" bgcolor="white">
+            <table id="tableImage" align="center" width="900" border="2">
 
               <tr align="center" height="200">
+
                       <td colspan="8" align="right"><h1>Edit/Remove Item</h1></td>
+
               </tr>
 
               <tr>
@@ -51,8 +53,8 @@
                       $output .= '<td>' . $catagory . '</td>';
                       $output .= '<td>' . $image . '</td>' ;
 
-                      $output .= '<td><a href="editProduct.php?id='.$row['id'].'"><b>EDIT</b></a></td>';
-                      $output .= '<td><a href="removeProduct.php?id='.$row['id'].'"><b>REMOVE</b></a></td>';
+                      $output .= '<td><a id="button1" href="editProduct.php?id='.$row['id'].'"><b>EDIT</b></a></td>';
+                      $output .= '<td><a id="button1" href="removeProduct.php?id='.$row['id'].'"><b>REMOVE</b></a></td>';
                       $output .= '</tr>';
 
                       echo $output;
@@ -64,7 +66,11 @@
               </tr>
 
               <tr align="center" height="200">
-                      <td colspan="8" align="right"><a href="insertProduct.php"><h1>Add Product</h1></a></td>
+                      <td colspan="8" align="right"><a id="addProduct" href="insertProduct.php"><h1>Add Product</h1></a></td>
+              </tr>
+
+              <tr align="center" height="200">
+                      <td colspan="8" align="right"><a id="addProduct" href="index.php"><h1>Main Page</h1></a></td>
               </tr>
 
             </table>
