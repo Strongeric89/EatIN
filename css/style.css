@@ -33,7 +33,7 @@ p {
 
   /*background-color: #cccccc;*/
   background-color: #333;
-  height: 900px;
+  height: 920px;
   width: 960px;
 
   margin-right: auto;
@@ -301,7 +301,7 @@ width: 30%;
 
 #myorder{
   width:760px;
-  height: 100px;
+  height: 140px;
   background-image: url(../images/bg-box.jpg);
   color:black;
   padding: 0px;

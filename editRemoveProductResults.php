@@ -16,6 +16,15 @@
 
             <table id="tableImage" align="center" width="900" border="2">
 
+            </tr>
+
+            <tr align="center" height="200">
+                    <td colspan="8" align="right"><a id="addProduct" href="insertProduct.php"><h1>Add Product</h1></a></td>
+            </tr>
+
+
+
+
               <tr align="center" height="200">
 
                       <td colspan="8" align="right"><h1>Edit/Remove Item</h1></td>
@@ -32,6 +41,7 @@
                     <td><b>Remove</b></td>
 
               </tr>
+
 
               <tr>
                 <?php
@@ -63,11 +73,6 @@
                     }//end query results
 
                   ?>
-              </tr>
-
-              <tr align="center" height="200">
-                      <td colspan="8" align="right"><a id="addProduct" href="insertProduct.php"><h1>Add Product</h1></a></td>
-              </tr>
 
               <tr align="center" height="200">
                       <td colspan="8" align="right"><a id="addProduct" href="index.php"><h1>Main Page</h1></a></td>

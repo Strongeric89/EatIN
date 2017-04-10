@@ -31,3 +31,7 @@ function itemDeleted(){
 function itemUpdated(){
   alert("item has been updated");
 }
+
+function addedToBasket(){
+  alert("Item added to basket");
+}

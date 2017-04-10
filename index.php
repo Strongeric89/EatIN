@@ -1,18 +1,20 @@
 <?php include('includes/db.php');
 
 //sets up the option get variable as its not set on run
+
+//COMMENTED OUT FOR ADD TO BASKET
+
 if(!isset($_GET['option'])){
 
-   header('Location: index.php?option=TodaysSpecials');
-   exit;
+   //header('Location: index.php?option=TodaysSpecials');
+   //exit;
+   echo "<script>window.open('index.php?option=TodaysSpecials','_self')</script>";
+
  }
 
 ?>
 
 <?php
-
-
-
   //create the select for main page
 
   $option = "";
@@ -133,10 +135,13 @@ if(!isset($_GET['option'])){
               document.write(displayDate());
             </script>
           </b>
+
           <br>
+          <h5 >Number of Items: <span id="importantText"><?php calculateBasket(); ?></span></h5>
 
+            <?php shoppingbasket();?>
 
-            <h1>Your Shopping Cart Total: <span id="importantText">€0.00</span></h1>
+            <h1>Your Shopping Cart Total: <span id="importantText">€<?php calculatePrice();?></span></h1>
 
           </div>
 
@@ -260,7 +265,7 @@ if(!isset($_GET['option'])){
                           <h5>$product_name</h5>
                           <img src='$product_image' width='100' height='100' border='3' alt='food image'/>
                           <p><i>€ $product_price</i></p>
-                          <a href='index.php?product_id=$product_id'><input type='submit' value='add to order' name='item'></a>
+                          <a href='index.php?add_basket=$product_id'><input type='submit' value='add to order' name='item' onclick='addedToBasket();'></a>
 
                         </div> ";
 
@@ -303,3 +308,130 @@ if(!isset($_GET['option'])){
 </body>
 
 </html>
+
+
+
+<?php
+//functions for the main page
+function shoppingbasket(){
+  include('includes/db.php');
+
+  if(isset($_GET['add_basket'])){
+
+    //get the users ID. for testing purposes this is just set to 1
+    $customer_id = 1;
+    $prod_id = $_GET['add_basket'];
+
+    $checkQuery = "SELECT * FROM SHOPPINGBASKET WHERE CUSTOMER_ID = $customer_id AND PRODUCT_ID = $prod_id ";
+
+    //will stop duplicate prod ids from being added.
+      $check2 = $mysqli->query($checkQuery);
+
+    if(mysqli_num_rows($check2) > 0){
+
+      //refreshes the page
+      echo "";
+
+    }//end if
+    else{
+
+      $insert = "INSERT INTO SHOPPINGBASKET (product_id, customer_id) VALUES('$prod_id', '$customer_id')";
+
+        $result2 = $mysqli->query($insert);
+
+        if($result2){
+          // echo "<script>alert('item added to your basket')</script>";
+
+          //refresh the page
+          echo "<script>window.open('index.php','_self')</script>";
+        }//end check
+
+    }//end else
+
+
+  }//end if
+
+
+}//end shopping basket
+
+
+function calculateBasket(){
+    include('includes/db.php');
+
+  if(isset($_GET['add_basket'])){
+
+    //hard coded until i build in session variables
+    $cust_id = 1;
+
+    $itemsQuery = "SELECT * FROM SHOPPINGBASKET WHERE CUSTOMER_ID = '$cust_id'";
+
+      $result = $mysqli->query($itemsQuery);
+
+      $numItems = mysqli_num_rows($result);
+
+
+
+  }//end if
+
+  else{
+
+    $cust_id = 1;
+    $itemsQuery = "SELECT * FROM SHOPPINGBASKET WHERE CUSTOMER_ID = '$cust_id'";
+
+      $result = $mysqli->query($itemsQuery);
+
+      $numItems = mysqli_num_rows($result);
+
+  }
+
+  echo $numItems;
+
+
+}//end calculateBasket
+
+
+function calculatePrice(){
+//getting the price for the basket
+
+include('includes/db.php');
+
+$totalSum = 0.00;
+
+//hard coded until session added
+    $cust_id = 1;
+
+    //from the shopping basket table
+    $priceQuery = "SELECT * FROM SHOPPINGBASKET WHERE customer_id = '$cust_id'";
+
+      $result = $mysqli->query($priceQuery);
+
+      while($price = mysqli_fetch_array($result)){
+          $product_id = $price['product_id'];
+
+          //from the products table
+          $product_priceQuery = "SELECT * FROM PRODUCTS WHERE ID = '$product_id'";
+
+          $result2 = $mysqli->query($product_priceQuery);
+
+          while($displayPrice = mysqli_fetch_array($result2)){
+
+            $p = array($displayPrice['price']);
+
+            $sum = array_sum($p);
+            //adding sum to total sum
+            $totalSum += $sum;
+
+          }//end inner while
+
+      }//end while
+
+
+echo $totalSum;
+
+
+
+}//end calculatePrice
+
+
+
+ ?>

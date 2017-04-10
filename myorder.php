@@ -1,3 +1,6 @@
+<?php include('includes/db.php'); ?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -38,32 +41,106 @@
         <div id="aboutUs">
 
 <h1>My Order</h1>
+<script>
+  document.write(displayDate());
+</script>
+
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus ipsa consequuntur sapiente, eveniet cum dolores vero alias mollitia facilis quisquam labore aut, debitis accusantium dignissimos, magni fugiat, corporis sed quis!<img src="images/eatin.jpg" alt="restraunt image" align="right" width="300" height="300" id="restImg">
+          Thank you very much for your order. Please review the following to ensure all items are correct<img src="images/logo1.jpg" alt="restraunt image" align="right" width="300" height="300" id="restImg">
 
 
           </p>
 
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <form id=" " action="" method="post">
 
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <table id="tableImage" width="500" border="1">
+                <tr>
+                  <th><h3>Item</h3></th>
+                  <th><h3>Price</h3></th>
+                  <th><h3>Quantity</h3></th>
+                  <th><h3>Remove</h3></th>
+                </tr>
 
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <?php
+
+                //getting the price for the basket
+                $totalSum = 0.00;
+
+                //hard coded until session added
+                    $cust_id = 1;
+
+                    //from the shopping basket table
+                    $priceQuery = "SELECT * FROM SHOPPINGBASKET WHERE customer_id = '$cust_id'";
+
+                      $result = $mysqli->query($priceQuery);
+
+                      while($price = mysqli_fetch_array($result)){
+                          $product_id = $price['product_id'];
+
+                          //from the products table
+                          $product_priceQuery = "SELECT * FROM PRODUCTS WHERE ID = '$product_id'";
+
+                          $result2 = $mysqli->query($product_priceQuery);
+
+                          while($displayPrice = mysqli_fetch_array($result2)){
+
+                            $p = array($displayPrice['price']);
+                            //get description of product
+                            $t = $displayPrice['name'];
+
+                            //single price of item
+                            $p1 = $displayPrice['price'];
+
+                            $sum = array_sum($p);
+                            //adding sum to total sum
+                            $totalSum += $sum;
 
 
 
+                 ?>
 
+                <tr>
+                  <td><?php echo $t; ?></td>
+                  <td>€<?php echo $p1; ?></td>
+                  <td>
+
+                    <select class="" name="quantity">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+
+
+                    </select></td>
+                  <td><button type="button" name="button"> <span id="importantText">X</span> </button></td>
+                </tr>
+
+                <?php
+              }//end inner while
+                }//end while ?>
+
+                <tr >
+                  <td colspan="3" align="center"><h2>Total: € <?php echo $totalSum; ?></h2></td>
+                  <td colspan="2"><button type="button" name="button">
+
+                    Process Order
+                  </button></td>
+
+                </tr>
+
+              </table>
+
+            </form>
 
 
 
           </div>
-
-
-
-
-
-
-
 
         </div>
         <!--maincontent ends-->
