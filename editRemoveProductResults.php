@@ -41,7 +41,9 @@ if($ID == 100){
 
             <table id="tableImage" align="center" width="900" border="2">
 
-            </tr>
+              <tr align="center" height="200">
+                      <td colspan="8" align="right"><h1>Welcome to the Admin Area <?php echo $_SESSION['id'];  ?></h1></td>
+              </tr>
 
             <tr align="center" height="200">
                     <td colspan="8" align="right"><a id="addProduct" href="addAdmin.php"><h1>Add Admin</h1></a></td>

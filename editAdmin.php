@@ -60,17 +60,12 @@ if($ID == 100){
       $update4 = "UPDATE `admins` SET `password` = '$ePassword' WHERE `admins`.`id` = '$proId' ";
 
         //do the query
-        $result2 = $mysqli->query($update);
-        //$mysqli->query($update2);
+        $mysqli->query($update);
         $mysqli->query($update3);
         $mysqli->query($update4);
 
 
-
-        header('Location: index.php');
-
-
-
+        header('Location: editRemoveProductResults.php');
 
     }//end if
 
@@ -92,7 +87,7 @@ if($ID == 100){
     <div   <div id="container2">
 
 
-          <form action="editProfile.php?id=<?php echo $id; ?>" method="post">
+          <form action="editAdmin.php?id=<?php echo $id; ?>" method="post">
 
             <table  id="tableImage" align="center" width="900" border="2" bgcolor="white">
 
@@ -145,6 +140,7 @@ if($ID == 100){
                     <td colspan="8" >
                       <input type="submit" value="Update Profile" name="editdone" onclick=" profileUpdated();">
                       <input type="submit" value="Cancel" name="cancel"/>
+                      <input type="submit" value="Delete" name="delete"onclick=" profiledeleted();"/>
                     </td>
 
 
@@ -160,9 +156,26 @@ if($ID == 100){
 </html>
 
 <?php
+//cancel button
   if(isset($_POST['cancel'])){
-    header('Location: index.php');
+    header('Location: editRemoveProductResults.php');
   }
 
 
  ?>
+
+ <?php
+ //delete button
+   if(isset($_POST['delete'])){
+
+     $deleteQuery = "DELETE FROM admins WHERE `admins`.`id` = '$proId' ";
+
+       //do the query
+       $mysqli->query($deleteQuery);
+
+
+     header('Location: Adminlogin.php');
+   }
+
+
+  ?>
