@@ -9,12 +9,9 @@ function displayDate(){
 
 
 }
-function myFunction(){
+function changeImage(){
 
-      document.getElementById("maincontent").style.backgroundImage = "url('images/starters.jpg')";
-
-
-
+      document.getElementById("bg1").style.backgroundImage = "url('images/logo3.jpg')";
 
 }
 
@@ -34,4 +31,36 @@ function itemUpdated(){
 
 function addedToBasket(){
   alert("Item added to basket");
+}
+
+function deletedFromBasket(){
+  alert("Your Basket has been updated");
+}
+
+
+
+function displayPayment(){
+
+
+  payment = 'Processing Payment';
+
+
+  return payment;
+
+
+}
+
+function displayPayment2(){
+
+
+  payment = 'Payment Successful';
+
+
+  return payment;
+
+
+}
+
+function signup(){
+  alert("Thank you for Signing up. ");
 }

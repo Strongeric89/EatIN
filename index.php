@@ -1,13 +1,9 @@
-<?php include('includes/db.php');
+<?php
 
-//sets up the option get variable as its not set on run
 
-//COMMENTED OUT FOR ADD TO BASKET
-
+include('includes/db.php');
 if(!isset($_GET['option'])){
 
-   //header('Location: index.php?option=TodaysSpecials');
-   //exit;
    echo "<script>window.open('index.php?option=TodaysSpecials','_self')</script>";
 
  }
@@ -95,8 +91,13 @@ if(!isset($_GET['option'])){
           Search for product:
           <input type="search" name="option">
 
+<!-- this will change to log in or log out depending if there is a session -->
+          <a href="#"><label for="">logout</label></a>
+
 
           </form>
+
+
 
 
 
@@ -142,6 +143,8 @@ if(!isset($_GET['option'])){
             <?php shoppingbasket();?>
 
             <h1>Your Shopping Cart Total: <span id="importantText">€<?php calculatePrice();?></span></h1>
+
+
 
           </div>
 
@@ -340,7 +343,6 @@ function shoppingbasket(){
         $result2 = $mysqli->query($insert);
 
         if($result2){
-          // echo "<script>alert('item added to your basket')</script>";
 
           //refresh the page
           echo "<script>window.open('index.php','_self')</script>";

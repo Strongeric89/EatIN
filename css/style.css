@@ -435,3 +435,7 @@ width: 30%;
 #tableImage a:link{
   color: #cc0000;
 }
+
+#loginForm{
+  text-align: center;
+}

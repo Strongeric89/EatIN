@@ -1,4 +1,8 @@
-<?php include('includes/db.php'); ?>
+<?php
+session_start();
+include('includes/db.php');
+
+?>
 
 
 <!DOCTYPE html>
@@ -53,7 +57,7 @@
 
             <form id=" " action="" method="post">
 
-              <table id="tableImage" width="500" border="1">
+              <table id="tableImage" width="500">
                 <tr>
                   <th><h3>Item</h3></th>
                   <th><h3>Price</h3></th>
@@ -67,7 +71,7 @@
                 $totalSum = 0.00;
 
                 //hard coded until session added
-                    $cust_id = 1;
+                $cust_id = 1;
 
                     //from the shopping basket table
                     $priceQuery = "SELECT * FROM SHOPPINGBASKET WHERE customer_id = '$cust_id'";
@@ -95,30 +99,36 @@
                             //adding sum to total sum
                             $totalSum += $sum;
 
-
-
                  ?>
 
                 <tr>
                   <td><?php echo $t; ?></td>
                   <td>€<?php echo $p1; ?></td>
                   <td>
+                    <!-- <input type="text" name="quantity" size="2" value="<?php echo $_SESSION['quantity'] ?>"/> -->
 
-                    <select class="" name="quantity">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
+                      <input type="number" name="quantity" value="<?php echo $_SESSION['quantity'] ?>" min="1" max="9">
+                  </td>
 
+                    <?php
+                        if(isset($_POST['update'])){
 
-                    </select></td>
-                  <td><button type="button" name="button"> <span id="importantText">X</span> </button></td>
+                          $quantity = $_POST['quantity'];
+
+                          //from the shopping basket table
+                          // UPDATE `shoppingbasket` SET `quantity`=3 WHERE product_id = 15
+                          $updateQuery = "UPDATE SHOPPINGBASKET SET QUANTITY='$quantity'";
+
+                            $result = $mysqli->query($updateQuery);
+
+                            $_SESSION ['quantity'] = $quantity;
+
+                            $totalSum = $totalSum*$quantity;
+
+                        }//end if
+                     ?>
+
+                  <td><input type="checkbox" name="remove[]" value="<?php echo $product_id; ?>"/></td>
                 </tr>
 
                 <?php
@@ -126,11 +136,13 @@
                 }//end while ?>
 
                 <tr >
-                  <td colspan="3" align="center"><h2>Total: € <?php echo $totalSum; ?></h2></td>
-                  <td colspan="2"><button type="button" name="button">
+                  <td colspan="2" align="center"><h2>Total: € <?php echo $totalSum; ?></h2></td>
 
-                    Process Order
-                  </button></td>
+                  <td colspan="1"><button type="submit" name="update" onclick='deletedFromBasket();'>Update Order</button></td>
+
+                  <td colspan="1"><button type="submit" name="processOrder">Process Order</button></td>
+
+                  <!-- <a href="processOrder.html"> -->
 
                 </tr>
 
@@ -138,8 +150,49 @@
 
             </form>
 
+            <?php
+
+            //if update date button is clicked
+              if(isset($_POST['update'])){
+
+                //HARD CODED
+                $customer_id = 1;
+                foreach($_POST['remove'] as $remove){
+
+                  //from the shopping basket table
+                  $deleteQuery = "DELETE FROM SHOPPINGBASKET WHERE product_id=$remove AND customer_id= $customer_id ";
+
+                    $result = $mysqli->query($deleteQuery);
+
+                    if($result){
+                    echo "<script>window.open('myorder.php','_self')</script>";
+                  }//end if
+
+                }//end for
+
+              }//end if
 
 
+
+             ?>
+
+
+             <?php
+
+                if(isset($_POST['processOrder'])){
+
+                      if($totalSum == 0){
+                          echo "<script>alert('Your basket is empty')</script>";
+                          echo "<script>window.open('index.php','_self')</script>";
+                      }
+                      else{
+                          echo "<script>window.open('processOrder.html','_self')</script>";
+
+                      }//end else
+
+                }//end if isset
+
+              ?>
           </div>
 
         </div>
