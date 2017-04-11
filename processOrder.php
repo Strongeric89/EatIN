@@ -1,3 +1,4 @@
+<?php include('includes/db.php'); ?>
 <?php
 $ID=0;
 session_start();
@@ -49,10 +50,10 @@ if(!isset($_SESSION['id'])){
 
                 <li> <a href="index.php">HOME</a></li>
 
-                <li><a href="aboutUs.html">ABOUT US</a></li>
+                <li><a href="aboutUs.php">ABOUT US</a></li>
 
 
-                <li> <a href="editRemoveProductResults.php">ADMIN</a></li>
+                <!-- <li> <a href="editRemoveProductResults.php">ADMIN</a></li> -->
 
 
             </ul>
@@ -98,15 +99,33 @@ if(!isset($_SESSION['id'])){
 
             </div>
 
-            <b>remember to clear the basket after order</b>
 
             <?php
+            //query
+            $id = $_SESSION['id'];
+            $proId=0;
+
+            $editProfile = "SELECT * FROM `customers` where email = '$id' ";
+            $result = $mysqli->query($editProfile);
+
+            if($result = $mysqli->query($editProfile)){
+              while($row = mysqli_fetch_array($result)){
+                $proId = $row['id'];
+
+              }//end query results
+
+              $result->close();
+            }//if there is an entry
 
 
-            //CLEAR THE BASKET AND THEN RETURN
+              $clearBasketQuery = "DELETE FROM SHOPPINGBASKET WHERE customer_id = $proId";
+
+              $result1 = $mysqli->query($clearBasketQuery);
+
+              if($result1){
 
 
-
+              }
 
              ?>
 
@@ -115,9 +134,9 @@ if(!isset($_SESSION['id'])){
 
 
 
-
-
         </div>
+
+         <h5><a href="index.php">Return to Shop</a></h5>
         <!--maincontent ends-->
         <footer id="footer">
 

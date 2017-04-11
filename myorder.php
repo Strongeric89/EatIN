@@ -71,6 +71,8 @@ if($ID == 100){
 
                 <li><a href="aboutUs.php">ABOUT US</a></li>
 
+                <li>  <a href="editprofile.php">EDIT PROFILE</a></li>
+
 
             </ul>
 

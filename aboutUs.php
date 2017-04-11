@@ -48,10 +48,8 @@ if(!isset($_SESSION['id'])){
                 <li> <a href="index.php">HOME</a></li>
 
                 <li><a href="aboutUs.php" >ABOUT US</a></li>
-
-
-                <!-- <li>  <a href="editRemoveProductResults.php">ADMIN</a></li> -->
-
+     
+                 <li>  <a href="editprofile.php">EDIT PROFILE</a></li>
 
             </ul>
 

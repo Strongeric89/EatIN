@@ -29,6 +29,10 @@ function itemUpdated(){
   alert("item has been updated");
 }
 
+function profileUpdated(){
+  alert("your profile has been updated");
+}
+
 function addedToBasket(){
   alert("Item added to basket");
 }
@@ -66,7 +70,7 @@ function signup(){
 }
 
 function goToHome(){
-  
+
 
 
 }

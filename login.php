@@ -33,18 +33,19 @@ include('includes/db.php');
 
 
                   <br><br>
-                  <form id="loginForm" action="login.php" method="post" >
+                  <form id="loginForm" action="login.php" method="post">
 
-                    <b>Email: </b><input type="email" name="email" id="username" value="" required>
+                    <b>Email:  &nbsp   &nbsp   &nbsp   &nbsp</b><input type="email" name="email" id="username" value="" required>
                     <br><br>
-                    <b>Password: </b><input type="password" name="password" id="passord" value="" required>
+                    <b>Password:  </b><input type="password" name="password" id="passord" value="" required>
                     <br><br>
 
                       <!-- <b>Remember me:</b><input type="checkbox" name="remember" value="1"> -->
 
                     <br><br>
                     <a href="signup.php" style="color:red;">Sign up</a>
-                      <br>
+                      <br><br>
+                        <a href="Adminlogin.php" style="color:red;">Admin Area (for test purposes)</a>
                       <br>
                       <br>
                     <input type="submit" name="login" value="Login">

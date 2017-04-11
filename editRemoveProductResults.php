@@ -107,6 +107,10 @@ if($ID == 100){
 
                   ?>
 
+                  <tr align="center" height="200">
+                          <td colspan="8" align="right"><a id="addProduct" href="editAdmin.php"><h1>Edit Admin</h1></a></td>
+                  </tr>
+
               <tr align="center" height="200">
                       <td colspan="8" align="right"><a id="addProduct" href="index.php"><h1>Main Page</h1></a></td>
               </tr>

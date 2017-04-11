@@ -115,7 +115,10 @@ if($ID == 100){
 
               <tr align="center">
 
-                    <td colspan="8" ><input type="submit" name="insertProduct" value="insert new Item" ></td>
+                    <td colspan="8" ><input type="submit" name="insertProduct" value="insert new Item" >
+                      
+
+                    </td>
 
               </tr>
 
