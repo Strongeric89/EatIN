@@ -1,5 +1,26 @@
 <?php include('includes/db.php'); ?>
+<?php
+$ID = 0;
+session_start();
 
+// admin session to ensure someone is signed in
+if(!isset($_SESSION['id'])){
+
+  $ID = 100;
+}//end if
+?>
+
+
+<?php
+if($ID == 100){
+      echo "<script>alert('You must log in first')</script>";
+        session_destroy();
+      echo "<script>window.open('login.php','_self')</script>";
+
+  }
+
+
+ ?>
 
 
 <!DOCTYPE html>

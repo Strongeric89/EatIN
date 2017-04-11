@@ -64,3 +64,9 @@ function displayPayment2(){
 function signup(){
   alert("Thank you for Signing up. ");
 }
+
+function goToHome(){
+  
+
+
+}

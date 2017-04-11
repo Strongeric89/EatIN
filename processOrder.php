@@ -1,3 +1,26 @@
+<?php
+$ID=0;
+session_start();
+
+if(!isset($_SESSION['id'])){
+  $id = "Guest";
+  $ID = 100;
+}//end if
+
+
+ ?>
+
+ <?php
+ //means user must be logged in
+ if($ID == 100){
+       echo "<script>alert('You must log in first')</script>";
+         session_destroy();
+       echo "<script>window.open('login.php','_self')</script>";
+
+   }
+
+
+  ?>
 <!DOCTYPE html>
 <html>
 
@@ -69,10 +92,23 @@
                         }, 3000);
 
 
-                        setTimeout("alert('Payment Successfull');", 4000);
+                        setTimeout("alert('Payment Successfull');", 8000);
+
                     </script>
 
             </div>
+
+            <b>remember to clear the basket after order</b>
+
+            <?php
+
+
+            //CLEAR THE BASKET AND THEN RETURN
+
+
+
+
+             ?>
 
 
 

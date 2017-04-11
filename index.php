@@ -1,14 +1,62 @@
 <?php
-
-
+session_start();
 include('includes/db.php');
+//session to ensure someone is signed in
+
+if(!isset($_SESSION['id'])){
+  $id = "Guest";
+  $ID = 100;
+}//end if
+else{
+
+$id = $_SESSION['id'];
+$ID = 100;
+
+//get the customer id for the shoppingbasket
+$getCustomerIdQuery = "SELECT id, first_name FROM CUSTOMERS WHERE email = '$id'";
+
+  $result9 = $mysqli->query($getCustomerIdQuery);
+
+    if($result9){
+
+      while($row = $result9->fetch_assoc()){
+        $ID = $row['id'];
+        $NAME = $row['first_name'];
+    }
+
+
+
+
+    }
+
+
+
+  //echo $ID;
+
+}//end else
+
+
 if(!isset($_GET['option'])){
 
    echo "<script>window.open('index.php?option=TodaysSpecials','_self')</script>";
 
- }
+ }//end if
+
 
 ?>
+
+<?php
+if($ID == 100){
+      echo "<script>alert('You must log in first')</script>";
+        session_destroy();
+      echo "<script>window.open('login.php','_self')</script>";
+
+  }
+
+
+ ?>
+
+
 
 <?php
   //create the select for main page
@@ -36,14 +84,6 @@ if(!isset($_GET['option'])){
   $extraQuery = "SELECT * FROM PRODUCTS WHERE CATAGORY = '9' ";
 
   $mineralsQuery = "SELECT * FROM PRODUCTS WHERE CATAGORY = '10' ";
-
-  //get results
-//   $result1 = $mysqli->query($landingQuery);
-// $_GET['id']=1;
-
-
-
-
 
  ?>
 
@@ -83,16 +123,29 @@ if(!isset($_GET['option'])){
             <li>  <a href="myorder.php">MY ORDER</a></li>
 
               <!-- onclick="myFunction();" -->
-            <li><a href="aboutUs.html" >ABOUT US</a></li>
+            <li><a href="aboutUs.php" >ABOUT US</a></li>
 
 
-            <li>  <a href="editRemoveProductResults.php">ADMIN</a></li>
+            <!-- <li>  <a href="editRemoveProductResults.php">ADMIN</a></li> -->
+            
              <form id="searchBar">
           Search for product:
           <input type="search" name="option">
 
 <!-- this will change to log in or log out depending if there is a session -->
-          <a href="#"><label for="">logout</label></a>
+
+<?php
+    if(!isset($_SESSION['id'])){
+      echo "  <a href='login.php'><label>login</label></a>";
+      $NAME = "Guest";
+      $ID=100;
+    }
+    else{
+        echo "  <a href='logout.php'><label>logout</label></a>";
+    }
+
+ ?>
+
 
 
           </form>
@@ -131,18 +184,24 @@ if(!isset($_GET['option'])){
 
           <div id="myorder">
 <br>
+          <b>Welcome <span id="importantText"><?php echo $NAME;  ?></span></b>
             <b>
+              &nbsp
+              &nbsp
             <script>
               document.write(displayDate());
             </script>
           </b>
 
           <br>
-          <h5 >Number of Items: <span id="importantText"><?php calculateBasket(); ?></span></h5>
 
-            <?php shoppingbasket();?>
 
-            <h1>Your Shopping Cart Total: <span id="importantText">€<?php calculatePrice();?></span></h1>
+
+          <h5 >Number of Items: <span id="importantText"><?php calculateBasket($ID); ?></span></h5>
+
+            <?php shoppingbasket($ID);?>
+
+            <h1>Your Shopping Cart Total: <span id="importantText">€<?php calculatePrice($ID);?></span></h1>
 
 
 
@@ -265,16 +324,35 @@ if(!isset($_GET['option'])){
 
                         <div id='product_box'>
 
+
                           <h5>$product_name</h5>
                           <img src='$product_image' width='100' height='100' border='3' alt='food image'/>
                           <p><i>€ $product_price</i></p>
                           <a href='index.php?add_basket=$product_id'><input type='submit' value='add to order' name='item' onclick='addedToBasket();'></a>
 
-                        </div> ";
+
+
+                        </div>
+
+                         ";
+
 
 
                     }//end while loop
+
+
+
+
+
+
+
+
+
                  ?>
+
+
+
+
                    </div>
 
 
@@ -316,13 +394,13 @@ if(!isset($_GET['option'])){
 
 <?php
 //functions for the main page
-function shoppingbasket(){
+function shoppingbasket( $ID){
   include('includes/db.php');
 
   if(isset($_GET['add_basket'])){
 
     //get the users ID. for testing purposes this is just set to 1
-    $customer_id = 1;
+    $customer_id = $ID;
     $prod_id = $_GET['add_basket'];
 
     $checkQuery = "SELECT * FROM SHOPPINGBASKET WHERE CUSTOMER_ID = $customer_id AND PRODUCT_ID = $prod_id ";
@@ -357,13 +435,13 @@ function shoppingbasket(){
 }//end shopping basket
 
 
-function calculateBasket(){
+function calculateBasket($ID){
     include('includes/db.php');
 
   if(isset($_GET['add_basket'])){
 
     //hard coded until i build in session variables
-    $cust_id = 1;
+    $cust_id = $ID;
 
     $itemsQuery = "SELECT * FROM SHOPPINGBASKET WHERE CUSTOMER_ID = '$cust_id'";
 
@@ -377,7 +455,7 @@ function calculateBasket(){
 
   else{
 
-    $cust_id = 1;
+    $cust_id = $ID;
     $itemsQuery = "SELECT * FROM SHOPPINGBASKET WHERE CUSTOMER_ID = '$cust_id'";
 
       $result = $mysqli->query($itemsQuery);
@@ -392,7 +470,7 @@ function calculateBasket(){
 }//end calculateBasket
 
 
-function calculatePrice(){
+function calculatePrice($ID){
 //getting the price for the basket
 
 include('includes/db.php');
@@ -400,7 +478,7 @@ include('includes/db.php');
 $totalSum = 0.00;
 
 //hard coded until session added
-    $cust_id = 1;
+    $cust_id = $ID;
 
     //from the shopping basket table
     $priceQuery = "SELECT * FROM SHOPPINGBASKET WHERE customer_id = '$cust_id'";

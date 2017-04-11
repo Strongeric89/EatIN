@@ -2,7 +2,45 @@
 session_start();
 include('includes/db.php');
 
+//session to ensure someone is signed in
+if(!isset($_SESSION['id'])){
+  $id = "Guest";
+  $ID = 100;
+}//end if
+
+else{
+
+$id = $_SESSION['id'];
+//$ID = 100;
+
+//get the customer id for the shoppingbasket
+$getCustomerIdQuery = "SELECT id, first_name FROM CUSTOMERS WHERE email = '$id'";
+
+  $result9 = $mysqli->query($getCustomerIdQuery);
+
+       while($row = $result9->fetch_assoc()){
+        $ID = $row['id'];
+        $NAME = $row['first_name'];
+     }//end while
+
+   }
+
+
 ?>
+
+<?php
+//means user must be logged in
+if($ID == 100){
+      echo "<script>alert('You must log in first')</script>";
+        session_destroy();
+      echo "<script>window.open('login.php','_self')</script>";
+
+  }
+
+
+ ?>
+
+
 
 
 <!DOCTYPE html>
@@ -31,7 +69,7 @@ include('includes/db.php');
 
                 <li> <a href="myorder.php">MY ORDER</a></li>
 
-                <li><a href="aboutUs.html">ABOUT US</a></li>
+                <li><a href="aboutUs.php">ABOUT US</a></li>
 
 
             </ul>
@@ -55,7 +93,7 @@ include('includes/db.php');
 
           </p>
 
-            <form id=" " action="" method="post">
+            <form id=" " action="myorder.php" method="post">
 
               <table id="tableImage" width="500">
                 <tr>
@@ -69,9 +107,8 @@ include('includes/db.php');
 
                 //getting the price for the basket
                 $totalSum = 0.00;
-
                 //hard coded until session added
-                $cust_id = 1;
+                $cust_id = $ID;
 
                     //from the shopping basket table
                     $priceQuery = "SELECT * FROM SHOPPINGBASKET WHERE customer_id = '$cust_id'";
@@ -98,6 +135,8 @@ include('includes/db.php');
                             $sum = array_sum($p);
                             //adding sum to total sum
                             $totalSum += $sum;
+
+
 
                  ?>
 
@@ -156,7 +195,7 @@ include('includes/db.php');
               if(isset($_POST['update'])){
 
                 //HARD CODED
-                $customer_id = 1;
+                $customer_id = $ID;
                 foreach($_POST['remove'] as $remove){
 
                   //from the shopping basket table
@@ -172,8 +211,6 @@ include('includes/db.php');
 
               }//end if
 
-
-
              ?>
 
 
@@ -183,14 +220,34 @@ include('includes/db.php');
 
                       if($totalSum == 0){
                           echo "<script>alert('Your basket is empty')</script>";
-                          echo "<script>window.open('index.php','_self')</script>";
+                           echo "<script>window.open('index.php','_self')</script>";
                       }
+                      // if($ID == 100){
+                      //       echo "<script>alert('You must log in first')</script>";
+                      //         session_destroy();
+                      //       echo "<script>window.open('login.php','_self')</script>";
+                      //
+                      //   }
+
                       else{
-                          echo "<script>window.open('processOrder.html','_self')</script>";
+                          echo "<script>window.open('processOrder.php','_self')</script>";
 
                       }//end else
-
                 }//end if isset
+
+                // if(!isset($_SESSION['id'])){
+                //
+                //
+                //           echo "<script>alert('you must be logged in to pay')</script>";
+                //           echo "<script>window.open('index.php','_self')</script>";
+                //
+                //
+                //
+                // }//end if isset
+                // else{
+                //     //echo "<script>window.open('processOrder.html','_self')</script>";
+                //
+                // }//end else
 
               ?>
           </div>

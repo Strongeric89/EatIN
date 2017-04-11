@@ -1,5 +1,30 @@
 <?php include('includes/db.php'); ?>
 
+<?php
+$ID = 0;
+session_start();
+
+// admin session to ensure someone is signed in
+if(!isset($_SESSION['id'])){
+
+  $ID = 100;
+}//end if
+?>
+
+
+<?php
+if($ID == 100){
+      echo "<script>alert('You must log in first')</script>";
+        session_destroy();
+      echo "<script>window.open('login.php','_self')</script>";
+
+  }
+
+
+ ?>
+
+
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -19,7 +44,15 @@
             </tr>
 
             <tr align="center" height="200">
+                    <td colspan="8" align="right"><a id="addProduct" href="addAdmin.php"><h1>Add Admin</h1></a></td>
+            </tr>
+
+            <tr align="center" height="200">
                     <td colspan="8" align="right"><a id="addProduct" href="insertProduct.php"><h1>Add Product</h1></a></td>
+            </tr>
+
+            <tr align="center" height="200">
+                    <td colspan="8" align="right"><a id="addProduct" href="signup.php"><h1>Add Customer</h1></a></td>
             </tr>
 
 

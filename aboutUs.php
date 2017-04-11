@@ -1,3 +1,28 @@
+<?php
+$ID=0;
+session_start();
+
+if(!isset($_SESSION['id'])){
+  $id = "Guest";
+  $ID = 100;
+}//end if
+
+
+
+
+ ?>
+
+ <?php
+ //means user must be logged in
+ if($ID == 100){
+       echo "<script>alert('You must log in first')</script>";
+         session_destroy();
+       echo "<script>window.open('login.php','_self')</script>";
+
+   }
+
+
+  ?>
 <!DOCTYPE html>
 <html>
 
@@ -22,10 +47,10 @@
             <ul id="navList">
                 <li> <a href="index.php">HOME</a></li>
 
-                <li><a href="aboutUs.html" >ABOUT US</a></li>
+                <li><a href="aboutUs.php" >ABOUT US</a></li>
 
 
-                <li>  <a href="editRemoveProductResults.php">ADMIN</a></li>
+                <!-- <li>  <a href="editRemoveProductResults.php">ADMIN</a></li> -->
 
 
             </ul>
