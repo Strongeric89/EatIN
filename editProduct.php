@@ -1,91 +1,78 @@
-<?php include('includes/db.php'); ?>
+<?php include ('includes/db.php'); ?>
 <?php
 $ID = 0;
 session_start();
-
 // admin session to ensure someone is signed in
-if(!isset($_SESSION['id'])){
 
-  $ID = 100;
-}//end if
+if (!isset($_SESSION['id']))
+{
+    $ID = 100;
+} //end if
+
 ?>
 
 
 <?php
-if($ID == 100){
-      echo "<script>alert('You must log in first')</script>";
-        session_destroy();
-      echo "<script>window.open('login.php','_self')</script>";
 
-  }
-
-
- ?>
+if ($ID == 100)
+{
+    echo "<script>alert('You must log in first')</script>";
+    session_destroy();
+    echo "<script>window.open('login.php','_self')</script>";
+}
+?>
 
 <?php
-    //display the product by its id
-    $id = $_GET['id'];
-    //query
-    $editProduct = "SELECT * FROM `products` where id = $id";
-    $result = $mysqli->query($editProduct);
+//display the product by its id
+$id = $_GET['id'];
+//query
+$editProduct = "SELECT * FROM `products` where id = $id";
+$result = $mysqli->query($editProduct);
 
-    if($result = $mysqli->query($editProduct)){
-      while($row = mysqli_fetch_array($result)){
+if ($result = $mysqli->query($editProduct))
+{
+
+    while ($row = mysqli_fetch_array($result))
+    {
         $id = $row['id'];
         $name = $row['name'];
         $price = $row['price'];
         $catagory = $row['catagory'];
         $image = $row['image'];
-
-
         // echo "<option value='$id'>$name</option>";
 
-      }//end query results
+    } //end query results
+    $result->close();
+} //if there is an entry
 
-      $result->close();
-    }//if there is an entry
-
-
-
-
-
-  ?>
+?>
 
   <?php
+// if($_POST){
 
-    // if($_POST){
-      if(isset($_POST['editdone'])){
-        //get id
+if (isset($_POST['editdone']))
+{
+    //get id
+    $pid = $_POST['productId'];
+    $pname = $_POST['productName'];
+    $pprice = $_POST['productPrice'];
+    $pcatagory = $_POST['productCatagory'];
+    $pimage = $_POST['productImage'];
+    //create the update queries
+    $update = "UPDATE `products` SET `name` = '$pname' WHERE `products`.`id` = $pid";
+    $update2 = "UPDATE `products` SET `image` = '$pimage' WHERE `products`.`id` = $pid";
+    $update3 = "UPDATE `products` SET `price` = '$pprice' WHERE `products`.`id` = $pid";
+    $update4 = "UPDATE `products` SET `catagory` = '$pcatagory' WHERE `products`.`id` = $pid";
+    //do the query
+    $result2 = $mysqli->query($update);
+    $mysqli->query($update2);
+    $mysqli->query($update3);
+    $mysqli->query($update4);
+    //$outputmsg = "Product Update";
+    header('Location: editRemoveProductResults.php');
+} //end if
 
-        $pid = $_POST['productId'];
-        $pname = $_POST['productName'];
-        $pprice = $_POST['productPrice'];
-        $pcatagory = $_POST['productCatagory'];
-        $pimage = $_POST['productImage'];
-
-      //create the update queries
-      $update = "UPDATE `products` SET `name` = '$pname' WHERE `products`.`id` = $pid";
-      $update2 = "UPDATE `products` SET `image` = '$pimage' WHERE `products`.`id` = $pid";
-      $update3 = "UPDATE `products` SET `price` = '$pprice' WHERE `products`.`id` = $pid";
-      $update4 = "UPDATE `products` SET `catagory` = '$pcatagory' WHERE `products`.`id` = $pid";
-
-        //do the query
-        $result2 = $mysqli->query($update);
-        $mysqli->query($update2);
-        $mysqli->query($update3);
-        $mysqli->query($update4);
-
-
-         //$outputmsg = "Product Update";
-        header('Location: editRemoveProductResults.php');
-
-
-
-
-    }//end if
-
-
-   ?>
+?>
 
 <!DOCTYPE html>
 <html>
@@ -115,7 +102,7 @@ if($ID == 100){
                     <td><b>Product id</b></td>
                     <td><input type="text" name="productId"
                       value="<?php
-                        echo $id; ?>"
+echo $id; ?>"
                       ></td>
 
               </tr>
@@ -123,7 +110,7 @@ if($ID == 100){
               <tr>
                     <td><b>Product Name</b></td>
                     <td><input type="text" name="productName"  value="<?php
-                      echo $name; ?>"required></td>
+echo $name; ?>"required></td>
 
               </tr>
 
@@ -131,7 +118,7 @@ if($ID == 100){
                     <td><b>Product Price</b></td>
                     <td><input type="text" name="productPrice"
                       value="<?php
-                        echo $price; ?>"
+echo $price; ?>"
                       required></td>
 
               </tr>
@@ -140,21 +127,20 @@ if($ID == 100){
                     <td><b>Product Catagory</b></td>
                     <td>
                           <select name="productCatagory">
-                            <option value="<?php  echo $catagory; ?>">
+                            <option value="<?php echo $catagory; ?>">
                               <?php
-                                  //display all catagories
-                                  $catagories = "SELECT * FROM `products_catagory` ";
-                                  $result = $mysqli->query($catagories);
+//display all catagories
+$catagories = "SELECT * FROM `products_catagory` ";
+$result = $mysqli->query($catagories);
 
-                                  while($row = mysqli_fetch_array($result)){
-                                    $id = $row['id'];
-                                    $name = $row['name'];
+while ($row = mysqli_fetch_array($result))
+{
+    $id = $row['id'];
+    $name = $row['name'];
+    echo "<option value='$id'>$name</option>";
+} //end query results
 
-                                    echo "<option value='$id'>$name</option>";
-
-                                  }//end query results
-
-                                ?>
+?>
                             </option>
 
 
@@ -172,21 +158,19 @@ if($ID == 100){
 
                       <td>
                       <select name="productImage">
-                        <option value="<?php  echo $image; ?>">
+                        <option value="<?php echo $image; ?>">
                           <?php
-                              //display all catagories
-                              $images = "SELECT DISTINCT image FROM `products` ";
-                              $result = $mysqli->query($images);
+//display all catagories
+$images = "SELECT DISTINCT image FROM `products` ";
+$result = $mysqli->query($images);
 
-                              while($row = mysqli_fetch_array($result)){
+while ($row = mysqli_fetch_array($result))
+{
+    $name = $row['image'];
+    echo "<option>$name</option>";
+} //end query results
 
-                                $name = $row['image'];
-
-                                echo "<option>$name</option>";
-
-                              }//end query results
-
-                            ?>
+?>
                         </option>
 
 

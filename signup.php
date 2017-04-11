@@ -1,8 +1,8 @@
 <?php
-include('includes/db.php');
- ?>
+include ('includes/db.php');
+?>
 
- 
+
 
 <!DOCTYPE html>
 <html>
@@ -71,29 +71,24 @@ include('includes/db.php');
 
 
 <?php
-  //to connect to db and create a customer entry
-  if(isset($_POST['register'])){
+//to connect to db and create a customer entry
 
-        $firstname = $_POST['name'];
-        $lastname = $_POST['lastname'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
+if (isset($_POST['register']))
+{
+    $firstname = $_POST['name'];
+    $lastname = $_POST['lastname'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $insertQuery = "INSERT INTO CUSTOMERS(first_name, last_name, email, password) VALUES('$firstname', '$lastname','$email','$password')";
+    $result = $mysqli->query($insertQuery);
 
-        $insertQuery = "INSERT INTO CUSTOMERS(first_name, last_name, email, password) VALUES('$firstname', '$lastname','$email','$password')";
+    if ($result)
+    {
+        echo "<script>alert('thank you for signing up' . $firstname)</script>";
+        header('Location: index.php?option=TodaysSpecials');
+        exit;
+    } //end if
 
-        $result = $mysqli->query($insertQuery);
+} //end if
 
-        if($result){
-
-          echo "<script>alert('thank you for signing up' . $firstname)</script>";
-
-          header('Location: index.php?option=TodaysSpecials');
-          exit;
-
-        }//end if
-
-
-  } //end if
-
-
- ?>
+?>

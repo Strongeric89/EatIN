@@ -1,44 +1,41 @@
 <?php
 session_start();
-include('includes/db.php');
-
+include ('includes/db.php');
 //session to ensure someone is signed in
-if(!isset($_SESSION['id'])){
-  $id = "Guest";
-  $ID = 100;
-}//end if
 
-else{
+if (!isset($_SESSION['id']))
+{
+    $id = "Guest";
+    $ID = 100;
+} //end if
 
-$id = $_SESSION['id'];
-//$ID = 100;
+else
+{
+    $id = $_SESSION['id'];
+    //$ID = 100;
+    //get the customer id for the shoppingbasket
+    $getCustomerIdQuery = "SELECT id, first_name FROM CUSTOMERS WHERE email = '$id'";
+    $result9 = $mysqli->query($getCustomerIdQuery);
 
-//get the customer id for the shoppingbasket
-$getCustomerIdQuery = "SELECT id, first_name FROM CUSTOMERS WHERE email = '$id'";
-
-  $result9 = $mysqli->query($getCustomerIdQuery);
-
-       while($row = $result9->fetch_assoc()){
+    while ($row = $result9->fetch_assoc())
+    {
         $ID = $row['id'];
         $NAME = $row['first_name'];
-     }//end while
+    } //end while
 
-   }
-
-
+}
 ?>
 
 <?php
 //means user must be logged in
-if($ID == 100){
-      echo "<script>alert('You must log in first')</script>";
-        session_destroy();
-      echo "<script>window.open('login.php','_self')</script>";
 
-  }
-
-
- ?>
+if ($ID == 100)
+{
+    echo "<script>alert('You must log in first')</script>";
+    session_destroy();
+    echo "<script>window.open('login.php','_self')</script>";
+}
+?>
 
 
 
@@ -106,41 +103,34 @@ if($ID == 100){
                 </tr>
 
                 <?php
+//getting the price for the basket
+$totalSum = 0.00;
+//hard coded until session added
+$cust_id = $ID;
+//from the shopping basket table
+$priceQuery = "SELECT * FROM SHOPPINGBASKET WHERE customer_id = '$cust_id'";
+$result = $mysqli->query($priceQuery);
 
-                //getting the price for the basket
-                $totalSum = 0.00;
-                //hard coded until session added
-                $cust_id = $ID;
+while ($price = mysqli_fetch_array($result))
+{
+    $product_id = $price['product_id'];
+    //from the products table
+    $product_priceQuery = "SELECT * FROM PRODUCTS WHERE ID = '$product_id'";
+    $result2 = $mysqli->query($product_priceQuery);
 
-                    //from the shopping basket table
-                    $priceQuery = "SELECT * FROM SHOPPINGBASKET WHERE customer_id = '$cust_id'";
-
-                      $result = $mysqli->query($priceQuery);
-
-                      while($price = mysqli_fetch_array($result)){
-                          $product_id = $price['product_id'];
-
-                          //from the products table
-                          $product_priceQuery = "SELECT * FROM PRODUCTS WHERE ID = '$product_id'";
-
-                          $result2 = $mysqli->query($product_priceQuery);
-
-                          while($displayPrice = mysqli_fetch_array($result2)){
-
-                            $p = array($displayPrice['price']);
-                            //get description of product
-                            $t = $displayPrice['name'];
-
-                            //single price of item
-                            $p1 = $displayPrice['price'];
-
-                            $sum = array_sum($p);
-                            //adding sum to total sum
-                            $totalSum += $sum;
-
-
-
-                 ?>
+    while ($displayPrice = mysqli_fetch_array($result2))
+    {
+        $p = array(
+            $displayPrice['price']
+        );
+        //get description of product
+        $t = $displayPrice['name'];
+        //single price of item
+        $p1 = $displayPrice['price'];
+        $sum = array_sum($p);
+        //adding sum to total sum
+        $totalSum = $sum;
+?>
 
                 <tr>
                   <td><?php echo $t; ?></td>
@@ -152,29 +142,28 @@ if($ID == 100){
                   </td>
 
                     <?php
-                        if(isset($_POST['update'])){
 
-                          $quantity = $_POST['quantity'];
+        if (isset($_POST['update']))
+        {
+            $quantity = $_POST['quantity'];
+            //from the shopping basket table
+            // UPDATE `shoppingbasket` SET `quantity`=3 WHERE product_id = 15
+            $updateQuery = "UPDATE SHOPPINGBASKET SET QUANTITY='$quantity'";
+            $result = $mysqli->query($updateQuery);
+            $_SESSION['quantity'] = $quantity;
+            $totalSum = $totalSum * $quantity;
+        } //end if
 
-                          //from the shopping basket table
-                          // UPDATE `shoppingbasket` SET `quantity`=3 WHERE product_id = 15
-                          $updateQuery = "UPDATE SHOPPINGBASKET SET QUANTITY='$quantity'";
-
-                            $result = $mysqli->query($updateQuery);
-
-                            $_SESSION ['quantity'] = $quantity;
-
-                            $totalSum = $totalSum*$quantity;
-
-                        }//end if
-                     ?>
+?>
 
                   <td><input type="checkbox" name="remove[]" value="<?php echo $product_id; ?>"/></td>
                 </tr>
 
                 <?php
-              }//end inner while
-                }//end while ?>
+    } //end inner while
+
+} //end while
+ ?>
 
                 <tr >
                   <td colspan="2" align="center"><h2>Total: € <?php echo $totalSum; ?></h2></td>
@@ -192,66 +181,69 @@ if($ID == 100){
             </form>
 
             <?php
+//if update date button is clicked
 
-            //if update date button is clicked
-              if(isset($_POST['update'])){
+if (isset($_POST['update']))
+{
+    //HARD CODED
+    $customer_id = $ID;
 
-                //HARD CODED
-                $customer_id = $ID;
-                foreach($_POST['remove'] as $remove){
+    foreach ($_POST['remove'] as $remove)
+    {
+        //from the shopping basket table
+        $deleteQuery = "DELETE FROM SHOPPINGBASKET WHERE product_id=$remove AND customer_id= $customer_id ";
+        $result = $mysqli->query($deleteQuery);
 
-                  //from the shopping basket table
-                  $deleteQuery = "DELETE FROM SHOPPINGBASKET WHERE product_id=$remove AND customer_id= $customer_id ";
+        if ($result)
+        {
+            echo "<script>window.open('myorder.php','_self')</script>";
+        } //end if
 
-                    $result = $mysqli->query($deleteQuery);
+    } //end for
 
-                    if($result){
-                    echo "<script>window.open('myorder.php','_self')</script>";
-                  }//end if
+} //end if
 
-                }//end for
-
-              }//end if
-
-             ?>
+?>
 
 
              <?php
 
-                if(isset($_POST['processOrder'])){
+if (isset($_POST['processOrder']))
+{
 
-                      if($totalSum == 0){
-                          echo "<script>alert('Your basket is empty')</script>";
-                           echo "<script>window.open('index.php','_self')</script>";
-                      }
-                      // if($ID == 100){
-                      //       echo "<script>alert('You must log in first')</script>";
-                      //         session_destroy();
-                      //       echo "<script>window.open('login.php','_self')</script>";
-                      //
-                      //   }
+    if ($totalSum == 0)
+    {
+        echo "<script>alert('Your basket is empty')</script>";
+        echo "<script>window.open('index.php','_self')</script>";
+    }
+    // if($ID == 100){
+    //       echo "<script>alert('You must log in first')</script>";
+    //         session_destroy();
+    //       echo "<script>window.open('login.php','_self')</script>";
+    //
+    //   }
 
-                      else{
-                          echo "<script>window.open('processOrder.php','_self')</script>";
+    else
+    {
+        echo "<script>window.open('processOrder.php','_self')</script>";
+    } //end else
 
-                      }//end else
-                }//end if isset
+} //end if isset
+// if(!isset($_SESSION['id'])){
+//
+//
+//           echo "<script>alert('you must be logged in to pay')</script>";
+//           echo "<script>window.open('index.php','_self')</script>";
+//
+//
+//
+// }//end if isset
+// else{
+//     //echo "<script>window.open('processOrder.html','_self')</script>";
+//
+// }//end else
 
-                // if(!isset($_SESSION['id'])){
-                //
-                //
-                //           echo "<script>alert('you must be logged in to pay')</script>";
-                //           echo "<script>window.open('index.php','_self')</script>";
-                //
-                //
-                //
-                // }//end if isset
-                // else{
-                //     //echo "<script>window.open('processOrder.html','_self')</script>";
-                //
-                // }//end else
-
-              ?>
+?>
           </div>
 
         </div>
@@ -259,25 +251,4 @@ if($ID == 100){
         <footer id="footer">
 
             <div id="footerText">
-                <b>&copy 2017 Eat In Chinese Restaurant | by Eric Strong</b>
-            </div>
-
-
-
-            <div id="socialMediaIcons">
-                <a href="#"><img src="images/facebook-opt.png" alt="facebook logo" width="30px"></a>
-                <a href="#"><img src="images/twitter-opt.png" alt="twitterlogo" width="30px"></a>
-                <a href="#"><img src="images/linked-in-opt.png" alt="linkedin logo" width="30px"></a>
-                <a href="#"><img src="images/justeat-opt.png" alt="just eatlogo" width="30px"></a>
-
-            </div>
-
-        </footer>
-        <!--footer ends-->
-    </div>
-  </div>
-
-
-</body>
-
-</html>
+                <b>

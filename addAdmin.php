@@ -1,29 +1,29 @@
 <?php
-include('includes/db.php');
- ?>
+include ('includes/db.php');
+?>
 
  <?php
- $ID = 0;
- session_start();
+$ID = 0;
+session_start();
+// admin session to ensure someone is signed in
 
- // admin session to ensure someone is signed in
- if(!isset($_SESSION['id'])){
+if (!isset($_SESSION['id']))
+{
+    $ID = 100;
+} //end if
 
-   $ID = 100;
- }//end if
- ?>
+?>
 
 
  <?php
- if($ID == 100){
-       echo "<script>alert('You must log in first')</script>";
-         session_destroy();
-       echo "<script>window.open('login.php','_self')</script>";
 
-   }
-
-
-  ?>
+if ($ID == 100)
+{
+    echo "<script>alert('You must log in first')</script>";
+    session_destroy();
+    echo "<script>window.open('login.php','_self')</script>";
+}
+?>
 
 <!DOCTYPE html>
 <html>
@@ -90,28 +90,24 @@ include('includes/db.php');
 
 
 <?php
-  //to connect to db and create a customer entry
-  if(isset($_POST['register'])){
+//to connect to db and create a customer entry
 
-        $username = $_POST['username'];
-        $name = $_POST['name'];
-        $password = $_POST['password'];
+if (isset($_POST['register']))
+{
+    $username = $_POST['username'];
+    $name = $_POST['name'];
+    $password = $_POST['password'];
+    $insertQuery = "INSERT INTO admins (username, name, password) VALUES('$username', '$name','$password')";
+    $result = $mysqli->query($insertQuery);
+    echo "<script>alert('administrator added')</script>";
 
-        $insertQuery = "INSERT INTO admins (username, name, password) VALUES('$username', '$name','$password')";
-
-        $result = $mysqli->query($insertQuery);
+    if ($result)
+    {
         echo "<script>alert('administrator added')</script>";
+        header('Location: editRemoveProductResults.php');
+        exit;
+    } //end if
 
-        if($result){
+} //end if
 
-          echo "<script>alert('administrator added')</script>";
-          header('Location: editRemoveProductResults.php');
-          exit;
-
-        }//end if
-
-
-  } //end if
-
-
- ?>
+?>

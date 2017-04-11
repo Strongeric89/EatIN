@@ -1,165 +1,140 @@
-
 body {
-
-  margin: 0px;
- font-family: Verdana,Arial,Helvetica,sans-serif;
- background-color: #e6e6e6;
- font-size: 14px;
- background-position: left top;
- background-image: url(../images/bg-spirals.jpg);
-
-
+    margin: 0px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    background-color: #e6e6e6;
+    font-size: 14px;
+    background-position: left top;
+    background-image: url(../images/bg-spirals.jpg);
 }
+
 h1 {
-  font-size: 26px;
-  text-align: center;
+    font-size: 26px;
+    text-align: center;
 }
+
 p {
-  font-family: Verdana,Arial,Helvetica,sans-serif;
-  font-size: 14px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 14px;
 }
+
 #container {
-
-  width: 960px;
-  height: auto;
-  margin-right: auto;
-  margin-left: auto;
-  margin-top: 30px;
-  background-color: #cccccc;
-
+    width: 960px;
+    height: auto;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 30px;
+    background-color: #cccccc;
 }
 
-#colorSIDE{
-
-  /*background-color: #cccccc;*/
-  background-color: #333;
-  height: 920px;
-  width: 960px;
-
-  margin-right: auto;
-  margin-left: auto;
+#colorSIDE {
+    /*background-color: #cccccc;*/
+    background-color: #333;
+    height: 920px;
+    width: 960px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
-#mainBanner{
-  width:100%;
-  height: 90px;
-
+#mainBanner {
+    width: 100%;
+    height: 90px;
 }
+
 #banner {
-  padding: 40px 0px 0px;
-  width: 82%;
-  height: 80px;
-  clear: both;
-  float: right;
-  color:white;
-
-  background-color: red;
-  font-family: ar delaney;
-  text-align: center;
-  font-size: 40px;
-
+    padding: 40px 0px 0px;
+    width: 82%;
+    height: 80px;
+    clear: both;
+    float: right;
+    color: white;
+    background-color: red;
+    font-family: ar delaney;
+    text-align: center;
+    font-size: 40px;
 }
 
-
-
-
-#bannerLogo{
-  padding: 40px 0px 0px;
-  height: 80px;
-  background-color: white;
-  font-family: ar delaney;
-  text-align: center;
-  font-size: 70px;
-  background-color: white;
-  float: left;
-  width:18%;
-
-
+#bannerLogo {
+    padding: 40px 0px 0px;
+    height: 80px;
+    background-color: white;
+    font-family: ar delaney;
+    text-align: center;
+    font-size: 70px;
+    background-color: white;
+    float: left;
+    width: 18%;
 }
 
 #sidebar {
-
-  font-size: 22px;
-  padding: 5px;
-
-
-  /*background-color: #cccccc;*/
-  background-color: #333;
-  width: 160px;
-  float: left;
-  /*height: 900px;*/
-
-
+    font-size: 22px;
+    padding: 5px;
+    /*background-color: #cccccc;*/
+    background-color: #333;
+    width: 160px;
+    float: left;
+    /*height: 900px;*/
 }
 
-#logoLink{
-  text-decoration: none;
-  color:black;
+#logoLink {
+    text-decoration: none;
+    color: black;
 }
 
-#logoLink2{
-  text-decoration: none;
-  color:white;
+#logoLink2 {
+    text-decoration: none;
+    color: white;
 }
-
 
 #maincontent {
-  padding: 0;
-  width: 81.5%;
-  float: left;
-  position: relative;
-
-  /*height: 605px;*/
-  background-image: url(../images/bg-striped.jpg);
-
+    padding: 0;
+    width: 81.5%;
+    float: left;
+    position: relative;
+    /*height: 605px;*/
+    background-image: url(../images/bg-striped.jpg);
 }
+
 #footer {
-  padding: 10px;
-  background-color: #333;
-  /*color: white;*/
-  text-align: center;
-  width: 940px;
-  height: 40px;
-  float: left;
-  clear: both;
-
-
-
-
-
-
+    padding: 10px;
+    background-color: #333;
+    /*color: white;*/
+    text-align: center;
+    width: 940px;
+    height: 40px;
+    float: left;
+    clear: both;
 }
+
 .navbar1 {
-  font-family: ar delaney;
-  text-align: center;
-  font-size: 26px;
+    font-family: ar delaney;
+    text-align: center;
+    font-size: 26px;
 }
 
 a:hover {
-  color: red;
-
+    color: red;
 }
 
 a:link {
-color: #CC0000;
-}
-a:visited {
-color: white;
-}
-a:hover {
-color: #FF3300;
+    color: #CC0000;
 }
 
+a:visited {
+    color: white;
+}
+
+a:hover {
+    color: #FF3300;
+}
 
 .important {
-  font-family: AR DARLING;
-  background-color: #ffccc;
+    font-family: AR DARLING;
+    background-color: #ffccc;
 }
 
 .sideList {
-
-  margin-top: 10px;
-    list-style-type:none;
+    margin-top: 10px;
+    list-style-type: none;
     margin: 0;
     padding: 0;
     padding: 10px;
@@ -169,273 +144,215 @@ color: #FF3300;
     text-decoration: none;
     color: red;
     font-family: ar delaney;
+}
 
-
-
-
-  }
-
-#navList{
-
-  list-style-type: none;
-  margin:  0px;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-  padding: 10px;
-  width: 940px;
-  height: 30px;
-  clear: both;
-  text-align: center;
-  font-family: ar delaney;
-  font-size: 1.3em;
-  text-decoration: none;
-  color: red;
-  vertical-align: middle;
-
+#navList {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    padding: 10px;
+    width: 940px;
+    height: 30px;
+    clear: both;
+    text-align: center;
+    font-family: ar delaney;
+    font-size: 1.3em;
+    text-decoration: none;
+    color: red;
+    vertical-align: middle;
 }
 
 li {
     float: left;
     border: 10x;
     border-color: white;
-
 }
 
 li a {
-
-    display:run-in;
+    display: run-in;
     color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-
 }
 
-
-
-#searchBar{
-
-  align-self: center;
-  color: white;
-  float:right;
-  text-align: right;
-  font-family: ar delaney;
-
-
+#searchBar {
+    align-self: center;
+    color: white;
+    float: right;
+    text-align: right;
+    font-family: ar delaney;
 }
 
-#footerText{
-  width=50%;
-  /*float:left;*/
-  text-align: center;
-  color:white;
+#footerText {
+    width=50%;
+    /*float:left;*/
+    text-align: center;
+    color: white;
 }
 
-#socialMediaIcons{
-  width=50%;
-  float:right;
-  color:white;
-
-
+#socialMediaIcons {
+    width=50%;
+    float: right;
+    color: white;
 }
 
-tr:hover {background-color:red;
-  color: white;
-
-
+tr:hover {
+    background-color: red;
+    color: white;
 }
+
 th {
-    height: 50px;
-width: 30%;
-
+    height: 50px;
+    width: 30%;
 }
-
-
 
 #mainRows {
-    height: 50px;
-width: 30%;
-
-
+    height: 50px;
+    width: 30%;
 }
 
-
-
-
-
-#mainTable{
-
-      width: 100%;
-  text-align: left;
-   border-bottom: 1px solid #ddd;
-
-
-
-
-
+#mainTable {
+    width: 100%;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
 }
-
 
 
 /*STYLE FOR Products on main Page*/
 
-#product_div{
-
-  width:700px;
-  text-align:center;
-  margin-left:25px;
-  margin-botton:10px;
-
+#product_div {
+    width: 700px;
+    text-align: center;
+    margin-left: 25px;
+    margin-botton: 10px;
 }
 
-#product_box{
-
-  float:left;
-  margin-left:70px;
-  margin-bottom: 20px;
-  padding:10px;
-
+#product_box {
+    float: left;
+    margin-left: 70px;
+    margin-bottom: 20px;
+    padding: 10px;
 }
 
-
-#myorder{
-  width:760px;
-  height: 140px;
-  background-image: url(../images/bg-box.jpg);
-  color:black;
-  padding: 0px;
-  padding-left: 20px;
-  margin:0px;
-  text-align: left;
-
+#myorder {
+    width: 760px;
+    height: 140px;
+    background-image: url(../images/bg-box.jpg);
+    color: black;
+    padding: 0px;
+    padding-left: 20px;
+    margin: 0px;
+    text-align: left;
 }
+
 
 /*Style for about us page*/
+
 #maincontentAbout {
-  padding: 30px;
-  width: 93.7%;
-  float: left;
-
-  height:100%;
-  background-color: white;
-  /*background-image: url(../images/bg-striped.jpg);*/
-
-}
-#directions{
-  width:100%;
-  height:300px;
+    padding: 30px;
+    width: 93.7%;
+    float: left;
+    height: 100%;
+    background-color: white;
+    /*background-image: url(../images/bg-striped.jpg);*/
 }
 
-#map1{
-
-  margin-bottom: 30px;
-  float:left;
-
-
+#directions {
+    width: 100%;
+    height: 300px;
 }
 
-#map2{
-
-  margin-top: 50px;
-  margin-bottom: 30px;
-  margin-right:250px;
-  text-align: left;
-  float:right;
-
-
-
+#map1 {
+    margin-bottom: 30px;
+    float: left;
 }
 
-#contact-form{
-  text-align:justify;
+#map2 {
+    margin-top: 50px;
+    margin-bottom: 30px;
+    margin-right: 250px;
+    text-align: left;
+    float: right;
 }
 
-#aboutus{
-  text-align:justify;
-  padding:20px;
+#contact-form {
+    text-align: justify;
 }
 
-#restImg{
-  padding:20px;
+#aboutus {
+    text-align: justify;
+    padding: 20px;
 }
 
-#form1{
-
-  background-image: url(../images/bg-striped.jpg);
-  padding:30px;
-  border-style: double;
-  border-color: red;
-
-
-
+#restImg {
+    padding: 20px;
 }
 
-#formElements{
-  border-radius: 5px;
-  width: 100%;
+#form1 {
+    background-image: url(../images/bg-striped.jpg);
+    padding: 30px;
+    border-style: double;
+    border-color: red;
+}
 
-  margin-top: 5px;
-
+#formElements {
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 5px;
 }
 
 
 /*The remove productpage*/
 
-#deleteBox{
-
-  text-align: center;
+#deleteBox {
+    text-align: center;
     background-image: url(../images/bg-striped.jpg);
-
 }
 
-#box{
-
-  margin-bottom: 30px;
-  text-align: center;
-  font-size: 20px;
-  background-color: green;
-  font-family: fantasy;
+#box {
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 20px;
+    background-color: green;
+    font-family: fantasy;
 }
 
-
-
-#addProduct{
-  text-decoration: none;
-  color:black;
+#addProduct {
+    text-decoration: none;
+    color: black;
 }
 
 #addProduct:hover {
-  color: white;
+    color: white;
 }
 
-#button1:hover{
-    color:black
-
-
-  }
-
-#button1{
-  text-decoration: none;
-
+#button1:hover {
+    color: black
 }
 
-#importantText{
-  color:red;
+#button1 {
+    text-decoration: none;
 }
 
-#tableImage{
+#importantText {
+    color: red;
+}
 
+#tableImage {
     background-image: url(../images/bg-striped.jpg);
 }
-#tableImage a:visited{
-  color:black;
+
+#tableImage a:visited {
+    color: black;
 }
 
-#tableImage a:link{
-  color: #cc0000;
+#tableImage a:link {
+    color: #cc0000;
 }
 
-#loginForm{
-  text-align: center;
+#loginForm {
+    text-align: center;
 }

@@ -1,27 +1,26 @@
-<?php include('includes/db.php'); ?>
+<?php include ('includes/db.php'); ?>
 <?php
-$ID=0;
+$ID = 0;
 session_start();
 
-if(!isset($_SESSION['id'])){
-  $id = "Guest";
-  $ID = 100;
-}//end if
+if (!isset($_SESSION['id']))
+{
+    $id = "Guest";
+    $ID = 100;
+} //end if
 
-
- ?>
+?>
 
  <?php
- //means user must be logged in
- if($ID == 100){
-       echo "<script>alert('You must log in first')</script>";
-         session_destroy();
-       echo "<script>window.open('login.php','_self')</script>";
+//means user must be logged in
 
-   }
-
-
-  ?>
+if ($ID == 100)
+{
+    echo "<script>alert('You must log in first')</script>";
+    session_destroy();
+    echo "<script>window.open('login.php','_self')</script>";
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -101,33 +100,28 @@ if(!isset($_SESSION['id'])){
 
 
             <?php
-            //query
-            $id = $_SESSION['id'];
-            $proId=0;
+//query
+$id = $_SESSION['id'];
+$proId = 0;
+$editProfile = "SELECT * FROM `customers` where email = '$id' ";
+$result = $mysqli->query($editProfile);
 
-            $editProfile = "SELECT * FROM `customers` where email = '$id' ";
-            $result = $mysqli->query($editProfile);
+if ($result = $mysqli->query($editProfile))
+{
 
-            if($result = $mysqli->query($editProfile)){
-              while($row = mysqli_fetch_array($result)){
-                $proId = $row['id'];
+    while ($row = mysqli_fetch_array($result))
+    {
+        $proId = $row['id'];
+    } //end query results
+    $result->close();
+} //if there is an entry
+$clearBasketQuery = "DELETE FROM SHOPPINGBASKET WHERE customer_id = $proId";
+$result1 = $mysqli->query($clearBasketQuery);
 
-              }//end query results
-
-              $result->close();
-            }//if there is an entry
-
-
-              $clearBasketQuery = "DELETE FROM SHOPPINGBASKET WHERE customer_id = $proId";
-
-              $result1 = $mysqli->query($clearBasketQuery);
-
-              if($result1){
-
-
-              }
-
-             ?>
+if ($result1)
+{
+}
+?>
 
 
 
@@ -141,25 +135,4 @@ if(!isset($_SESSION['id'])){
         <footer id="footer">
 
             <div id="footerText">
-                <b>&copy 2017 Eat In Chinese Restaurant | by Eric Strong</b>
-            </div>
-
-
-
-            <div id="socialMediaIcons">
-                <a href="#"><img src="images/facebook-opt.png" alt="facebook logo" width="30px"></a>
-                <a href="#"><img src="images/twitter-opt.png" alt="twitterlogo" width="30px"></a>
-                <a href="#"><img src="images/linked-in-opt.png" alt="linkedin logo" width="30px"></a>
-                <a href="#"><img src="images/justeat-opt.png" alt="just eatlogo" width="30px"></a>
-
-            </div>
-
-        </footer>
-        <!--footer ends-->
-    </div>
-    </div>
-
-
-    </body>
-
-</html>
+                <b>

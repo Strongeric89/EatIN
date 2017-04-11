@@ -1,28 +1,25 @@
 <?php
-$ID=0;
+$ID = 0;
 session_start();
 
-if(!isset($_SESSION['id'])){
-  $id = "Guest";
-  $ID = 100;
-}//end if
+if (!isset($_SESSION['id']))
+{
+    $id = "Guest";
+    $ID = 100;
+} //end if
 
-
-
-
- ?>
+?>
 
  <?php
- //means user must be logged in
- if($ID == 100){
-       echo "<script>alert('You must log in first')</script>";
-         session_destroy();
-       echo "<script>window.open('login.php','_self')</script>";
+//means user must be logged in
 
-   }
-
-
-  ?>
+if ($ID == 100)
+{
+    echo "<script>alert('You must log in first')</script>";
+    session_destroy();
+    echo "<script>window.open('login.php','_self')</script>";
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -48,7 +45,7 @@ if(!isset($_SESSION['id'])){
                 <li> <a href="index.php">HOME</a></li>
 
                 <li><a href="aboutUs.php" >ABOUT US</a></li>
-     
+
                  <li>  <a href="editprofile.php">EDIT PROFILE</a></li>
 
             </ul>
@@ -95,7 +92,7 @@ if(!isset($_SESSION['id'])){
                 <h4>How to find us</h4>
 
 
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2382.332788575971!2d-6.269521884760754!3d53.33729878309082!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48670c2089d84a1d%3A0x6e1d03e3d62489ae!2sDIT-Kevin+Street!5e0!3m2!1sen!2sie!4v1479836076868"
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2382.332788575971!2d-6.269521884760754!3d53.33729878309082!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48670c2089d84a1d:0x6e1d03e3d62489ae!2sDIT-Kevin Street!5e0!3m2!1sen!2sie!4v1479836076868"
                     frameborder="0" style="border:0" allowfullscreen="">
 
 
@@ -164,25 +161,4 @@ if(!isset($_SESSION['id'])){
         <footer id="footer">
 
             <div id="footerText">
-                <b>&copy 2017 Eat In Chinese Restaurant | by Eric Strong</b>
-            </div>
-
-
-
-            <div id="socialMediaIcons">
-                <a href="#"><img src="images/facebook-opt.png" alt="facebook logo" width="30px"></a>
-                <a href="#"><img src="images/twitter-opt.png" alt="twitterlogo" width="30px"></a>
-                <a href="#"><img src="images/linked-in-opt.png" alt="linkedin logo" width="30px"></a>
-                <a href="#"><img src="images/justeat-opt.png" alt="just eatlogo" width="30px"></a>
-
-            </div>
-
-        </footer>
-        <!--footer ends-->
-    </div>
-  </div>
-
-
-</body>
-
-</html>
+                <b>

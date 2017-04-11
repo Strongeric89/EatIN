@@ -1,76 +1,70 @@
-<?php include('includes/db.php'); ?>
+<?php include ('includes/db.php'); ?>
 <?php
 $ID = 0;
 session_start();
-
 // admin session to ensure someone is signed in
-if(!isset($_SESSION['id'])){
 
-  $ID = 100;
-}//end if
+if (!isset($_SESSION['id']))
+{
+    $ID = 100;
+} //end if
+
 ?>
 
 
 <?php
-if($ID == 100){
-      echo "<script>alert('You must log in first')</script>";
-        session_destroy();
-      echo "<script>window.open('login.php','_self')</script>";
 
-  }
-
-
- ?>
+if ($ID == 100)
+{
+    echo "<script>alert('You must log in first')</script>";
+    session_destroy();
+    echo "<script>window.open('login.php','_self')</script>";
+}
+?>
 
 <?php
+$id = $_SESSION['id'];
+//to get the customer
+//query
+$editProfile = "SELECT * FROM `admins` where username = '$id' ";
+$result = $mysqli->query($editProfile);
 
-    $id = $_SESSION['id'];
-    //to get the customer
+if ($result = $mysqli->query($editProfile))
+{
 
-    //query
-    $editProfile = "SELECT * FROM `admins` where username = '$id' ";
-    $result = $mysqli->query($editProfile);
-
-    if($result = $mysqli->query($editProfile)){
-      while($row = mysqli_fetch_array($result)){
+    while ($row = mysqli_fetch_array($result))
+    {
         $proId = $row['id'];
         $firstname = $row['name'];
         $email = $row['username'];
         $password = $row['password'];
+    } //end query results
+    $result->close();
+} //if there is an entry
 
-      }//end query results
-
-      $result->close();
-    }//if there is an entry
-
-  ?>
+?>
 
   <?php
+// if($_POST){
 
-    // if($_POST){
-      if(isset($_POST['editdone'])){
-        //get id
-        $pid = $_POST['customerId'];
-        $eFirst = $_POST['firstname'];
-        $eEmail = $_POST['email'];
-        $ePassword = $_POST['password'];
+if (isset($_POST['editdone']))
+{
+    //get id
+    $pid = $_POST['customerId'];
+    $eFirst = $_POST['firstname'];
+    $eEmail = $_POST['email'];
+    $ePassword = $_POST['password'];
+    $update = "UPDATE `admins` SET `name` = '$eFirst' WHERE `admins`.`id` = '$proId' ";
+    $update3 = "UPDATE `admins` SET `email` = '$eEmail' WHERE `admins`.`id` = '$proId'";
+    $update4 = "UPDATE `admins` SET `password` = '$ePassword' WHERE `admins`.`id` = '$proId' ";
+    //do the query
+    $mysqli->query($update);
+    $mysqli->query($update3);
+    $mysqli->query($update4);
+    header('Location: editRemoveProductResults.php');
+} //end if
 
-      $update = "UPDATE `admins` SET `name` = '$eFirst' WHERE `admins`.`id` = '$proId' ";
-      $update3 = "UPDATE `admins` SET `email` = '$eEmail' WHERE `admins`.`id` = '$proId'";
-      $update4 = "UPDATE `admins` SET `password` = '$ePassword' WHERE `admins`.`id` = '$proId' ";
-
-        //do the query
-        $mysqli->query($update);
-        $mysqli->query($update3);
-        $mysqli->query($update4);
-
-
-        header('Location: editRemoveProductResults.php');
-
-    }//end if
-
-
-   ?>
+?>
 
 <!DOCTYPE html>
 <html>
@@ -100,7 +94,7 @@ if($ID == 100){
                     <td><b>Admin id</b></td>
                     <td><input type="text" name="customerId"
                       value="<?php
-                        echo $proId; ?>"
+echo $proId; ?>"
                       ></td>
 
               </tr>
@@ -109,7 +103,7 @@ if($ID == 100){
                     <td><b>Name</b></td>
                     <td><input type="text" name="firstname"
                       value="<?php
-                        echo $firstname; ?>"
+echo $firstname; ?>"
                       ></td>
 
               </tr>
@@ -120,7 +114,7 @@ if($ID == 100){
                     <td><b>Username</b></td>
                     <td><input type="email" name="email"
                       value="<?php
-                        echo $email; ?>"
+echo $email; ?>"
                       required></td>
 
               </tr>
@@ -129,7 +123,7 @@ if($ID == 100){
                     <td><b>Password</b></td>
                     <td><input type="password" name="password"
                       value="<?php
-                        echo $password; ?>"
+echo $password; ?>"
                       required></td>
 
               </tr>
@@ -157,25 +151,21 @@ if($ID == 100){
 
 <?php
 //cancel button
-  if(isset($_POST['cancel'])){
+
+if (isset($_POST['cancel']))
+{
     header('Location: editRemoveProductResults.php');
-  }
-
-
- ?>
+}
+?>
 
  <?php
- //delete button
-   if(isset($_POST['delete'])){
+//delete button
 
-     $deleteQuery = "DELETE FROM admins WHERE `admins`.`id` = '$proId' ";
-
-       //do the query
-       $mysqli->query($deleteQuery);
-
-
-     header('Location: Adminlogin.php');
-   }
-
-
-  ?>
+if (isset($_POST['delete']))
+{
+    $deleteQuery = "DELETE FROM admins WHERE `admins`.`id` = '$proId' ";
+    //do the query
+    $mysqli->query($deleteQuery);
+    header('Location: Adminlogin.php');
+}
+?>

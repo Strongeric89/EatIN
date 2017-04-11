@@ -1,26 +1,26 @@
-<?php include('includes/db.php'); ?>
+<?php include ('includes/db.php'); ?>
 <?php
 $ID = 0;
 session_start();
-
 // admin session to ensure someone is signed in
-if(!isset($_SESSION['id'])){
 
-  $ID = 100;
-}//end if
+if (!isset($_SESSION['id']))
+{
+    $ID = 100;
+} //end if
+
 ?>
 
 
 <?php
-if($ID == 100){
-      echo "<script>alert('You must log in first')</script>";
-        session_destroy();
-      echo "<script>window.open('login.php','_self')</script>";
 
-  }
-
-
- ?>
+if ($ID == 100)
+{
+    echo "<script>alert('You must log in first')</script>";
+    session_destroy();
+    echo "<script>window.open('login.php','_self')</script>";
+}
+?>
 
 
 <!DOCTYPE html>
@@ -40,23 +40,19 @@ if($ID == 100){
     <div id="container2" >
 <h1> Are you sure you want to remove this product?</h1>
 <?php
-
-$id=$_GET['id'];
-
-$deleteQuery1= "SELECT * FROM PRODUCTS WHERE id = $id ";
-
+$id = $_GET['id'];
+$deleteQuery1 = "SELECT * FROM PRODUCTS WHERE id = $id ";
 $result1 = $mysqli->query($deleteQuery1);
 
-
-while($row = $result1->fetch_assoc()){
-  $product_id = $row['id'];
-  $product_name = $row['name'];
-  $product_price = $row['price'];
-  $product_catagory = $row['catagory'];
-  $product_image = $row['image'];
-
-  //this is the product boxes to be displayed
-  echo "
+while ($row = $result1->fetch_assoc())
+{
+    $product_id = $row['id'];
+    $product_name = $row['name'];
+    $product_price = $row['price'];
+    $product_catagory = $row['catagory'];
+    $product_image = $row['image'];
+    //this is the product boxes to be displayed
+    echo "
 
   <div id='product_box2'>
 
@@ -75,29 +71,25 @@ while($row = $result1->fetch_assoc()){
 
   </div> ";
 
-  if(isset($_POST['yesRemove'])){
+    if (isset($_POST['yesRemove']))
+    {
+        $delete2 = "DELETE FROM `products` WHERE name like '%$product_name%'";
+        $mysqli->query($delete2);
+        header('Location: editRemoveProductResults.php');
+        exit;
+    } //end if
 
-      $delete2 = "DELETE FROM `products` WHERE name like '%$product_name%'";
+} //end while loop
 
-     $mysqli->query($delete2);
-
-     header('Location: editRemoveProductResults.php');
-     exit;
-
-
-  }//end if
-
-}//end while loop
-
- ?>
+?>
 
  <?php
-    if(isset($_POST['noRemove'])){
-          header('Location: editRemoveProductResults.php');
-    }
 
-
-  ?>
+if (isset($_POST['noRemove']))
+{
+    header('Location: editRemoveProductResults.php');
+}
+?>
 
             </div>
           </div>

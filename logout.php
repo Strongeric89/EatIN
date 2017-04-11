@@ -1,27 +1,27 @@
 <?php
 // session_start();
 // session_destroy();
-
-$ID=0;
+$ID = 0;
 session_start();
 
-if(!isset($_SESSION['id'])){
-  $id = "Guest";
-  $ID = 100;
-}//end if
+if (!isset($_SESSION['id']))
+{
+    $id = "Guest";
+    $ID = 100;
+} //end if
 
- ?>
+?>
 
  <?php
- //means user must be logged in
- if($ID == 100){
-       echo "<script>alert('You must log in first')</script>";
-         session_destroy();
-       echo "<script>window.open('login.php','_self')</script>";
+//means user must be logged in
 
-   }
-
-   ?>
+if ($ID == 100)
+{
+    echo "<script>alert('You must log in first')</script>";
+    session_destroy();
+    echo "<script>window.open('login.php','_self')</script>";
+}
+?>
 
 
 
@@ -64,9 +64,8 @@ if(!isset($_SESSION['id'])){
         </div>
 
         <?php
-
-         session_destroy();
-         ?>
+session_destroy();
+?>
 
     </div>
     </div>

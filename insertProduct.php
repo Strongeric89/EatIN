@@ -1,26 +1,26 @@
-<?php include('includes/db.php'); ?>
+<?php include ('includes/db.php'); ?>
 <?php
 $ID = 0;
 session_start();
-
 // admin session to ensure someone is signed in
-if(!isset($_SESSION['id'])){
 
-  $ID = 100;
-}//end if
+if (!isset($_SESSION['id']))
+{
+    $ID = 100;
+} //end if
+
 ?>
 
 
 <?php
-if($ID == 100){
-      echo "<script>alert('You must log in first')</script>";
-        session_destroy();
-      echo "<script>window.open('login.php','_self')</script>";
 
-  }
-
-
- ?>
+if ($ID == 100)
+{
+    echo "<script>alert('You must log in first')</script>";
+    session_destroy();
+    echo "<script>window.open('login.php','_self')</script>";
+}
+?>
 
 <!DOCTYPE html>
 <html>
@@ -64,20 +64,18 @@ if($ID == 100){
                           <select name="productCatagory">
                             <option value="">Select Catagory</option>
                             <?php
-                                //display all catagories
-                                $catagories = "SELECT * FROM `products_catagory` ";
-                                $result = $mysqli->query($catagories);
+//display all catagories
+$catagories = "SELECT * FROM `products_catagory` ";
+$result = $mysqli->query($catagories);
 
-                                while($row = mysqli_fetch_array($result)){
-                                  $id = $row['id'];
-                                  $name = $row['name'];
+while ($row = mysqli_fetch_array($result))
+{
+    $id = $row['id'];
+    $name = $row['name'];
+    echo "<option value='$id'>$name</option>";
+} //end query results
 
-                                  echo "<option value='$id'>$name</option>";
-
-                                }//end query results
-
-
-                              ?>
+?>
 
                             </select>
 
@@ -91,21 +89,19 @@ if($ID == 100){
                     <td><b>Product Image</b></td>
                     <td>
                     <select name="image">
-                      <option value="<?php  echo $image; ?>">
+                      <option value="<?php echo $image; ?>">
                         <?php
-                            //display all catagories
-                            $images = "SELECT DISTINCT image FROM `products` ";
-                            $result = $mysqli->query($images);
+//display all catagories
+$images = "SELECT DISTINCT image FROM `products` ";
+$result = $mysqli->query($images);
 
-                            while($row = mysqli_fetch_array($result)){
+while ($row = mysqli_fetch_array($result))
+{
+    $name = $row['image'];
+    echo "<option>$name</option>";
+} //end query results
 
-                              $name = $row['image'];
-
-                              echo "<option>$name</option>";
-
-                            }//end query results
-
-                          ?>
+?>
                       </option>
 
 
@@ -116,7 +112,7 @@ if($ID == 100){
               <tr align="center">
 
                     <td colspan="8" ><input type="submit" name="insertProduct" value="insert new Item" >
-                      
+
 
                     </td>
 
@@ -133,25 +129,24 @@ if($ID == 100){
 
 <?php
 //inserting data into the database
-if(isset($_POST['insertProduct'])){
+
+if (isset($_POST['insertProduct']))
+{
     $product_name = $_POST['productName'];
     $product_price = $_POST['productPrice'];
     $product_catagory = $_POST['productCatagory'];
     $product_image = $_POST['image'];
-    $pos= "NULL";
-
-
-
+    $pos = "NULL";
     $insert = "INSERT INTO products (id,name,price,catagory,image) VALUES('$pos','$product_name', '$product_price', '$product_catagory', '$product_image')";
+    $result2 = $mysqli->query($insert);
 
-      $result2 = $mysqli->query($insert);
-
-      if($result2){
+    if ($result2)
+    {
         echo "<script>alert('item added')</script>";
         //refresh the page
         echo "<script>window.open('editRemoveProductResults.php','_self')</script>";
-      }//end check
+    } //end check
 
+} //end if
 
-}//end if
- ?>
+?>
