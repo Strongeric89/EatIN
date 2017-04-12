@@ -14,9 +14,9 @@ if (!isset($_SESSION['id']))
 
 <?php
 
-if ($ID == 100)
+if ($ID == 100  or $_SESSION['id'] !=1)
 {
-    echo "<script>alert('You must log in first')</script>";
+    echo "<script>alert('You do not have sufficient Privileges. Admins Only. You have been logged out!')</script>";
     session_destroy();
     echo "<script>window.open('login.php','_self')</script>";
 }

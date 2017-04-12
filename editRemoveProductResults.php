@@ -15,9 +15,9 @@ if (!isset($_SESSION['id']))
 
 <?php
 
-if ($ID == 100)
+if ($ID == 100 or $_SESSION['id'] !=1)
 {
-    echo "<script>alert('You must log in first')</script>";
+    echo "<script>alert('You do not have sufficient Privileges. Admins Only. You have been logged out!')</script>";
     session_destroy();
     echo "<script>window.open('login.php','_self')</script>";
 }
@@ -35,6 +35,8 @@ if ($ID == 100)
   </head>
   <body >
 
+
+
     <div   <div id="container2">
 
           <form action="editProduct.php" method="post">
@@ -42,7 +44,7 @@ if ($ID == 100)
             <table id="tableImage" align="center" width="900" border="2">
 
               <tr align="center" height="200">
-                      <td colspan="8" align="right"><h1>Welcome to the Admin Area <?php echo $_SESSION['id']; ?></h1></td>
+                      <td colspan="8" align="right"><h1>Welcome to the Admin Area <?php echo $_SESSION['name']; ?></h1></td>
               </tr>
 
             <tr align="center" height="200">
@@ -65,6 +67,9 @@ if ($ID == 100)
                       <td colspan="8" align="right"><h1>Edit/Remove Item</h1></td>
 
               </tr>
+
+
+
 
               <tr>
                     <td><b>Product Id</b></td>

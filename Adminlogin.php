@@ -73,13 +73,16 @@ if (isset($_POST['login']))
     else
     {
         //get the id to begin the session.
-        $selectQuery2 = "SELECT id FROM admins WHERE username = '$username' AND password = '$password' ";
+        $selectQuery2 = "SELECT id,name FROM admins WHERE username = '$username' AND password = '$password' ";
         $result2 = $mysqli->query($selectQuery2);
 
         if ($result2)
         {
             //using email as a session id
-            $_SESSION['id'] = $username;
+            $_SESSION['id'] = 1;
+            $_SESSION['name'] = $username;
+
+
             echo "<script>alert('Authentication Successfull. Welcome Admin');</script>";
             header('Location: editRemoveProductResults.php');
         } //end if
