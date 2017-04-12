@@ -1,6 +1,7 @@
 <?php
 session_start();
 include ('includes/db.php');
+
 //session to ensure someone is signed in
 
 if (!isset($_SESSION['id']))
@@ -70,6 +71,20 @@ if ($ID == 100)
 
                 <li>  <a href="editprofile.php">EDIT PROFILE</a></li>
 
+                <?php
+
+                if (!isset($_SESSION['id']))
+                {
+                    echo "  <li><a href='login.php'><label>login</label></a></li>";
+                    $NAME = "Guest";
+                    $ID = 100;
+                }
+                else
+                {
+                    echo "  <li><a href='logout.php'><label>logout</label></a></li>";
+                }
+                ?>
+
 
             </ul>
 
@@ -98,7 +113,7 @@ if ($ID == 100)
                 <tr>
                   <th><h3>Item</h3></th>
                   <th><h3>Price</h3></th>
-                  <th><h3>Quantity</h3></th>
+                  <!-- <th><h3>Quantity</h3></th> -->
                   <th><h3>Remove</h3></th>
                 </tr>
 
@@ -111,12 +126,15 @@ $cust_id = $ID;
 $priceQuery = "SELECT * FROM SHOPPINGBASKET WHERE customer_id = '$cust_id'";
 $result = $mysqli->query($priceQuery);
 
+
 while ($price = mysqli_fetch_array($result))
 {
     $product_id = $price['product_id'];
     //from the products table
     $product_priceQuery = "SELECT * FROM PRODUCTS WHERE ID = '$product_id'";
+
     $result2 = $mysqli->query($product_priceQuery);
+
 
     while ($displayPrice = mysqli_fetch_array($result2))
     {
@@ -129,17 +147,16 @@ while ($price = mysqli_fetch_array($result))
         $p1 = $displayPrice['price'];
         $sum = array_sum($p);
         //adding sum to total sum
-        $totalSum = $sum;
+        $totalSum = $totalSum + $sum;
 ?>
 
                 <tr>
-                  <td><?php echo $t; ?></td>
+                  <td><?php echo $t;  ?></td>
                   <td>€<?php echo $p1; ?></td>
-                  <td>
-                    <!-- <input type="text" name="quantity" size="2" value="<?php echo $_SESSION['quantity'] ?>"/> -->
+                  <!-- <td>
 
-                      <input type="number" name="quantity" value="<?php echo $_SESSION['quantity'] ?>" min="1" max="9">
-                  </td>
+                      <input type="number" name="quantity" value="<?php echo $_SESSION['quantity'] ?>" min="1" max="9" step="1" size="2">
+                  </td> -->
 
                     <?php
 
@@ -148,6 +165,7 @@ while ($price = mysqli_fetch_array($result))
             $quantity = $_POST['quantity'];
             //from the shopping basket table
             // UPDATE `shoppingbasket` SET `quantity`=3 WHERE product_id = 15
+
             $updateQuery = "UPDATE SHOPPINGBASKET SET QUANTITY='$quantity'";
             $result = $mysqli->query($updateQuery);
             $_SESSION['quantity'] = $quantity;
@@ -156,24 +174,31 @@ while ($price = mysqli_fetch_array($result))
 
 ?>
 
-                  <td><input type="checkbox" name="remove[]" value="<?php echo $product_id; ?>"/></td>
+                  <td align="center"><input type="checkbox" name="remove[]"  value="<?php echo $product_id; ?>"/></td>
                 </tr>
 
                 <?php
     } //end inner while
 
 } //end while
+
+
  ?>
 
                 <tr >
-                  <td colspan="2" align="center"><h2>Total: € <?php echo $totalSum; ?></h2></td>
 
-                  <td colspan="1"><button type="submit" name="update" onclick='deletedFromBasket();'>Update Order</button></td>
 
-                  <td colspan="1"><button type="submit" name="processOrder">Process Order</button></td>
+                  <td colspan="2" align="center"><h2>Total: € <?php echo number_format($totalSum,2); ?></h2></td>
 
-                  <!-- <a href="processOrder.html"> -->
+                  <td colspan="1"><button type="submit" name="update"style="width:100%; height:50px;" onclick='deletedFromBasket();'>Update Order</button></td>
 
+
+
+
+                </tr>
+
+                <tr align="center">
+                  <td colspan="4"><button type="submit" name="processOrder" style="height:50px; width:100%;">Process Order</button></td>
                 </tr>
 
               </table>
@@ -190,6 +215,7 @@ if (isset($_POST['update']))
 
     foreach ($_POST['remove'] as $remove)
     {
+
         //from the shopping basket table
         $deleteQuery = "DELETE FROM SHOPPINGBASKET WHERE product_id=$remove AND customer_id= $customer_id ";
         $result = $mysqli->query($deleteQuery);
@@ -199,6 +225,8 @@ if (isset($_POST['update']))
             echo "<script>window.open('myorder.php','_self')</script>";
         } //end if
 
+
+
     } //end for
 
 } //end if
@@ -206,7 +234,7 @@ if (isset($_POST['update']))
 ?>
 
 
-             <?php
+<?php
 
 if (isset($_POST['processOrder']))
 {
@@ -216,7 +244,7 @@ if (isset($_POST['processOrder']))
         echo "<script>alert('Your basket is empty')</script>";
         echo "<script>window.open('index.php','_self')</script>";
     }
-  
+
 
     else
     {

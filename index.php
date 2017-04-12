@@ -101,7 +101,7 @@ $mineralsQuery = "SELECT * FROM PRODUCTS WHERE CATAGORY = '10' ";
             <li>  <a href="myorder.php">MY ORDER</a></li>
 
               <!-- onclick="myFunction();" -->
-            <li><a href="aboutUs.php" >ABOUT US</a></li>
+            <li ><a href="aboutUs.php" >ABOUT US</a></li>
 
 
             <li>  <a href="editprofile.php">EDIT PROFILE</a></li>
@@ -116,7 +116,7 @@ $mineralsQuery = "SELECT * FROM PRODUCTS WHERE CATAGORY = '10' ";
 
 if (!isset($_SESSION['id']))
 {
-    echo "  <a href='login.php'><label>login</label></a>";
+    echo "  <li><a href='login.php'><label>login</label></a><li>";
     $NAME = "Guest";
     $ID = 100;
 }
@@ -383,6 +383,7 @@ $totalSum = 0.00;
            $totalSum += $sum;
          }//end inner while
      }//end while
-echo $totalSum;
+     echo number_format($totalSum,2);
+
 }//end calculatePrice
 ?>

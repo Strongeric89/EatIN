@@ -76,7 +76,7 @@ if ($ID == 100)
                 <body id="aboutus3">
 
 
-                    <img id="processing" src="images/processing.gif" alt="processing" onLoad="setTimeout(changeImage,3000);" width="450" />
+                    <img id="processing" src="images/processing.gif" alt="processing" onLoad="setTimeout(changeImage,3000);" align="center" width="450" />
                     <h1 id="payment"> <script>
 
                     document.write(displayPayment());</script></h1>

@@ -48,6 +48,20 @@ if ($ID == 100)
 
                  <li>  <a href="editprofile.php">EDIT PROFILE</a></li>
 
+                 <?php
+
+                 if (!isset($_SESSION['id']))
+                 {
+                     echo "  <li><a href='login.php'><label>login</label></a></li>";
+                     $NAME = "Guest";
+                     $ID = 100;
+                 }
+                 else
+                 {
+                     echo "  <li><a href='logout.php' align='right'><label>logout</label></a></li>";
+                 }
+                 ?>
+
             </ul>
 
         </div>
