@@ -135,4 +135,25 @@ if ($result1)
         <footer id="footer">
 
             <div id="footerText">
-                <b>
+              <b>&copy 2017 Eat In Chinese Restaurant | by Eric Strong</b>
+          </div>
+
+
+
+          <div id="socialMediaIcons">
+              <a href="#"><img src="images/facebook-opt.png" alt="facebook logo" width="30px"></a>
+              <a href="#"><img src="images/twitter-opt.png" alt="twitterlogo" width="30px"></a>
+              <a href="#"><img src="images/linked-in-opt.png" alt="linkedin logo" width="30px"></a>
+              <a href="#"><img src="images/justeat-opt.png" alt="just eatlogo" width="30px"></a>
+
+          </div>
+
+      </footer>
+      <!--footer ends-->
+  </div>
+  </div>
+
+
+  </body>
+
+</html>

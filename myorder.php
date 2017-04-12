@@ -216,12 +216,7 @@ if (isset($_POST['processOrder']))
         echo "<script>alert('Your basket is empty')</script>";
         echo "<script>window.open('index.php','_self')</script>";
     }
-    // if($ID == 100){
-    //       echo "<script>alert('You must log in first')</script>";
-    //         session_destroy();
-    //       echo "<script>window.open('login.php','_self')</script>";
-    //
-    //   }
+  
 
     else
     {
@@ -229,19 +224,7 @@ if (isset($_POST['processOrder']))
     } //end else
 
 } //end if isset
-// if(!isset($_SESSION['id'])){
-//
-//
-//           echo "<script>alert('you must be logged in to pay')</script>";
-//           echo "<script>window.open('index.php','_self')</script>";
-//
-//
-//
-// }//end if isset
-// else{
-//     //echo "<script>window.open('processOrder.html','_self')</script>";
-//
-// }//end else
+
 
 ?>
           </div>
@@ -251,4 +234,24 @@ if (isset($_POST['processOrder']))
         <footer id="footer">
 
             <div id="footerText">
-                <b>
+              <b>&copy 2017 Eat In Chinese Restaurant | by Eric Strong</b>
+          </div>
+
+
+
+          <div id="socialMediaIcons">
+              <a href="#"><img src="images/facebook-opt.png" alt="facebook logo" width="30px"></a>
+              <a href="#"><img src="images/twitter-opt.png" alt="twitterlogo" width="30px"></a>
+              <a href="#"><img src="images/linked-in-opt.png" alt="linkedin logo" width="30px"></a>
+              <a href="#"><img src="images/justeat-opt.png" alt="just eatlogo" width="30px"></a>
+
+          </div>
+
+      </footer>
+      <!--footer ends-->
+  </div>
+  </div>
+
+  </body>
+
+</html>

@@ -78,12 +78,6 @@ if ($ID == 100)
 
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-
-
-
-
-
-
           </div>
 
           <hr>
@@ -151,14 +145,30 @@ if ($ID == 100)
                 </form>
             </div>
 
-
-
-
-
-
         </div>
         <!--maincontent ends-->
         <footer id="footer">
 
             <div id="footerText">
-                <b>
+              <b>&copy 2017 Eat In Chinese Restaurant | by Eric Strong</b>
+          </div>
+
+
+
+          <div id="socialMediaIcons">
+              <a href="#"><img src="images/facebook-opt.png" alt="facebook logo" width="30px"></a>
+              <a href="#"><img src="images/twitter-opt.png" alt="twitterlogo" width="30px"></a>
+              <a href="#"><img src="images/linked-in-opt.png" alt="linkedin logo" width="30px"></a>
+              <a href="#"><img src="images/justeat-opt.png" alt="just eatlogo" width="30px"></a>
+
+          </div>
+
+      </footer>
+      <!--footer ends-->
+  </div>
+  </div>
+
+
+  </body>
+
+</html>
