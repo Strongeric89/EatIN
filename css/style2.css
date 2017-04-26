@@ -4,7 +4,9 @@ body {
     background-color: #e6e6e6;
     font-size: 14px;
     background-position: left top;
-    background-image: url(../images/bg-spirals.jpg);
+    background-image: url(../images/blurred.png);
+
+
 }
 
 h1 {
@@ -18,12 +20,14 @@ p {
 }
 
 #container {
-    width: 960px;
+
+
+    width: 600px;
     height: auto;
     margin-right: auto;
     margin-left: auto;
-    margin-top: 30px;
-    background-color: #cccccc;
+    margin-top: 200px;
+
 }
 
 #colorSIDE {
@@ -253,11 +257,14 @@ th {
 
 #maincontentAbout {
     padding: 30px;
+
     width: 93.7%;
     float: left;
     height: 100%;
-    background-color: white;
-    /*background-image: url(../images/bg-striped.jpg);*/
+    background-color: #d8d8d8;
+    border-style: double;
+    border-color: red;
+    background-image: url(../images/bg-striped.jpg);
 }
 
 #directions {
@@ -333,6 +340,7 @@ th {
     color: black
 }
 
+
 #button1 {
     text-decoration: none;
 }
@@ -353,6 +361,9 @@ th {
     color: #cc0000;
 }
 
+
+
 #loginForm {
     text-align: center;
+
 }

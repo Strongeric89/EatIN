@@ -205,7 +205,11 @@ while ($price = mysqli_fetch_array($result))
 
             </form>
 
+            <a id="continue" href="index.php"><h4>Continue Shopping</h4></a>
+
             <?php
+
+
 //if update date button is clicked
 
 if (isset($_POST['update']))

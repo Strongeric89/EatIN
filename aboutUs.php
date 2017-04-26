@@ -81,12 +81,12 @@ if ($ID == 100)
                     </b>
 
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus ipsa consequuntur sapiente, eveniet cum dolores vero alias mollitia facilis quisquam labore aut, debitis accusantium dignissimos, magni fugiat, corporis sed quis!<img src="images/eatin.jpg" alt="restraunt image" align="right" width="300" height="300" id="restImg">
+        Eat in Restraunt is an authentic Chinese Food Restraunt. Its deadly food! We are located in Dublin, and the grub is savage!<img src="images/eatin.jpg" alt="restraunt image" align="right" width="300" height="300" id="restImg">
 
 
           </p>
 
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p>Remember to check out our special offers and to buy all of our deadly food. cos its just soooooo good!.</p>
 
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
@@ -167,8 +167,6 @@ if ($ID == 100)
               <b>&copy 2017 Eat In Chinese Restaurant | by Eric Strong</b>
           </div>
 
-
-
           <div id="socialMediaIcons">
               <a href="#"><img src="images/facebook-opt.png" alt="facebook logo" width="30px"></a>
               <a href="#"><img src="images/twitter-opt.png" alt="twitterlogo" width="30px"></a>
@@ -181,7 +179,6 @@ if ($ID == 100)
       <!--footer ends-->
   </div>
   </div>
-
 
   </body>
 

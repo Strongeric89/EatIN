@@ -1,16 +1,10 @@
-<?php
-include ('includes/db.php');
-?>
-
-
-
+<?php include ('includes/db.php');?>
 <!DOCTYPE html>
 <html>
 
 <head>
     <script src="js/myscripts.js"></script>
     <link rel="stylesheet" href="css/style.css" type="text/css">
-
     <title>Sign up </title>
 
 </head>
@@ -55,20 +49,13 @@ include ('includes/db.php');
                       <br>
                       <a href="email.php"><input type="submit" value="sign up" name="register"></a>
                   </form>
-
-
-
-
         </div>
-
     </div>
     </div>
-
 
     </body>
 
 </html>
-
 
 <?php
 //to connect to db and create a customer entry

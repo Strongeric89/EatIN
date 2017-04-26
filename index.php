@@ -256,7 +256,7 @@ else
                      $list = '<h1>' . $item . '</h1>';
                      echo $list;
                  }else{
-                   echo "No Specials today";
+                   echo "<i>Cannot find item " . $option . "</i>";
                  }
                    //$result1 = $mysqli->query($landingQuery);
                    //while($row = mysqli_fetch_array($result1))

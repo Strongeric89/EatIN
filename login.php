@@ -7,21 +7,21 @@ include ('includes/db.php');
 
 <head>
     <script src="js/myscripts.js"></script>
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/style2.css" type="text/css">
 
     <title>Login </title>
 
 </head>
 
-<body id="bg1">
+<body id="bg1" >
 
     <div id="container">
 
-        <div id="mainBanner">
+        <!-- <div id="mainBanner">
             <div id="banner">Eat In Restaurant</div>
             <div id="bannerLogo">EIR</div>
 
-        </div>
+        </div> -->
 
 
         <div id="maincontentAbout">
@@ -81,6 +81,8 @@ include ('includes/db.php');
 
  </div>
  </div>
+
+
 
 
  </body>

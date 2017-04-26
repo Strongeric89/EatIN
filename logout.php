@@ -23,14 +23,6 @@ if ($ID == 100)
 }
 ?>
 
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html>
 
